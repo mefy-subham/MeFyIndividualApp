@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".FamilyActivity"
+    android:background="@color/colorWhite"
+    tools:showIn="@layout/app_bar_family">
+
+    <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="40dp">
+    <LinearLayout
+    android:id="@+id/familymemberdet"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:layout_marginTop="60dp"
+    android:orientation="horizontal">
+
+    <TextView
+    android:id="@+id/familymemberfirsttv"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:fontFamily="@font/sl"
+    android:text="@string/family1"
+    android:textSize="21sp" />
+
+    <Button
+    android:id="@+id/familymemberfirstbtn"
+    android:layout_width="30dp"
+    android:layout_height="30dp"
+    android:layout_alignParentEnd="true"
+    android:layout_alignParentRight="true"
+    android:layout_marginHorizontal="15dp"
+    android:layout_marginBottom="5dp"
+    android:background="@drawable/view" />
+
+    <Button
+    android:id="@+id/familymembersecbtn"
+    android:layout_width="30dp"
+    android:layout_height="20dp"
+    android:layout_alignParentEnd="true"
+    android:layout_alignParentRight="true"
+    android:layout_marginBottom="5dp"
+    android:background="@drawable/add" />
+    </LinearLayout>
+
+    <EditText
+    android:id="@+id/familymemberfirstedit"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:fontFamily="@font/sl"
+    android:hint="@string/family2"
+    android:layout_below="@+id/familymemberdet"
+    android:textSize="18sp" />
+
+    <EditText
+    android:id="@+id/familymembersecedit"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/familymemberfirstedit"
+    android:fontFamily="@font/sl"
+    android:hint="@string/family3"
+    android:textSize="18sp" />
+
+    <EditText
+    android:id="@+id/familymemberthirdedit"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:fontFamily="@font/sl"
+    android:hint="@string/family4"
+    android:textSize="18sp" />
+
+    <EditText
+    android:id="@+id/familymemberfourthedit"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:fontFamily="@font/sl"
+    android:hint="@string/family5"
+    android:textSize="18sp" />
+
+    <EditText
+    android:id="@+id/familymemberfifthedit"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:fontFamily="@font/sl"
+    android:hint="@string/family6"
+    android:textSize="18sp" />
+
+    <Button
+    android:id="@+id/familymemberthirdbtn"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_centerHorizontal="true"
+    android:layout_gravity="center"
+    android:background="@drawable/mybutton"
+    android:fontFamily="@font/sl"
+    android:paddingHorizontal="30dp"
+    android:layout_marginTop="20dp"
+    android:text="Save"
+    android:textColor="@color/colorWhite" />
+
+</LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_gravity="bottom"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/consultbtn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_weight="1"
+            android:text="Consult"
+            android:textSize="16dp" />
+
+        <Button
+            android:id="@+id/healthbtn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_weight="1"
+            android:text="Health"
+            android:textSize="16dp" />
+    </LinearLayout>
+</LinearLayout>

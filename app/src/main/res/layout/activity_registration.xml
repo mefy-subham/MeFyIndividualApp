@@ -1,0 +1,456 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="30dp"
+    android:layout_gravity="center"
+    android:orientation="vertical"
+    tools:context=".RegistrationActivity">
+
+    <LinearLayout
+        android:id="@+id/layoutMain"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/text1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="150dp"
+            android:fontFamily="@font/sl"
+            android:text="@string/text1"
+            android:textColor="@color/colorGrey"
+            android:textSize="35dp" />
+
+        <TextView
+            android:id="@+id/text2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/sl"
+            android:text="@string/text2"
+            android:textColor="@color/colorGrey"
+            android:textSize="20dp" />
+
+        <EditText
+            android:id="@+id/textfirst"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="20dp"
+            android:fontFamily="@font/sl"
+            android:hint="What is your name?"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/firstbtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:layout_gravity="center"
+            android:background="@drawable/mybutton"
+            android:paddingHorizontal="30dp"
+            android:text="next"
+            android:textColor="@color/colorWhite" />
+
+    </LinearLayout>
+
+    <LinearLayout android:id="@+id/layoutSec"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:visibility="gone">
+        <TextView
+            android:id="@+id/text3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="110dp"
+            android:fontFamily="@font/sl"
+            android:text="@string/text3"
+            android:textColor="@color/colorGrey"
+            android:textSize="35dp" />
+
+
+        <TextView
+            android:id="@+id/text4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/sl"
+            android:textColor="@color/colorGrey"
+            android:textStyle="bold"
+            android:textSize="25dp" />
+
+        <TextView
+            android:id="@+id/text5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/sl"
+            android:text="@string/text4"
+            android:textColor="@color/colorGrey"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/text6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/sl"
+            android:text="@string/text5"
+            android:textColor="@color/colorGrey"
+            android:layout_marginTop="20dp"
+            android:textSize="18sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <RadioGroup
+                android:id="@+id/gender"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/male"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/text6"
+                    android:checked="true"
+                    android:textColor="@color/colorGrey"
+                    android:fontFamily="@font/sl"
+                    android:textSize="16dp"/>
+
+                <RadioButton
+                    android:id="@+id/female"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/text7"
+                    android:textColor="@color/colorGrey"
+                    android:fontFamily="@font/sl"
+                    android:textSize="16dp"/>
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/others"
+                    android:text="@string/text8"
+                    android:textColor="@color/colorGrey"
+                    android:textSize="16dp"
+                    android:fontFamily="@font/sl"
+                    />
+
+            </RadioGroup>
+
+        </LinearLayout>
+
+
+        <Button
+            android:id="@+id/secbtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:layout_gravity="center"
+            android:background="@drawable/mybutton"
+            android:paddingHorizontal="30dp"
+            android:text="next"
+            android:textColor="@color/colorWhite" />
+
+    </LinearLayout>
+
+    <LinearLayout android:id="@+id/layoutthird"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/text9"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="150dp"
+            android:fontFamily="@font/sl"
+            android:textColor="@color/colorGrey"
+            android:textSize="35dp" />
+
+        <TextView
+            android:id="@+id/text10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/sl"
+            android:text="@string/text9"
+            android:textColor="@color/colorGrey"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/textsecond"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="20dp"
+            android:fontFamily="@font/sl"
+            android:text="What is your date of Birth?"
+            android:textSize="18sp" />
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="2dp"
+            android:background="#04aae4" />
+        <Button
+            android:id="@+id/thirdbtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:layout_gravity="center"
+            android:background="@drawable/mybutton"
+            android:paddingHorizontal="30dp"
+            android:text="next"
+            android:textColor="@color/colorWhite" />
+
+    </LinearLayout>
+    <LinearLayout android:id="@+id/layoutfour"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/text11"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="150dp"
+            android:fontFamily="@font/sl"
+            android:textColor="@color/colorGrey"
+            android:textSize="35dp" />
+
+        <TextView
+            android:id="@+id/text12"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/sl"
+            android:text="@string/text10"
+            android:textColor="@color/colorGrey"
+            android:textSize="20dp" />
+
+        <EditText
+            android:id="@+id/textthird"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="20dp"
+            android:fontFamily="@font/sl"
+            android:hint="Enter your city"
+            android:textSize="18sp"
+        />
+
+        <Button
+            android:id="@+id/fourthbtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:layout_gravity="center"
+            android:background="@drawable/mybutton"
+            android:paddingHorizontal="30dp"
+            android:text="next"
+            android:textColor="@color/colorWhite" />
+    </LinearLayout>
+
+    <LinearLayout android:id="@+id/layoutfive"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/text13"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="150dp"
+            android:fontFamily="@font/sl"
+            android:textColor="@color/colorGrey"
+            android:textSize="35dp" />
+
+        <TextView
+            android:id="@+id/text14"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/sl"
+            android:text="@string/text11"
+            android:textColor="@color/colorGrey"
+            android:textSize="20dp" />
+
+        <EditText
+            android:id="@+id/textfourth"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="20dp"
+            android:inputType="number"
+            android:fontFamily="@font/sl"
+            android:hint="Enter your mobile number"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/fifthbtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:layout_gravity="center"
+            android:background="@drawable/mybutton"
+            android:paddingHorizontal="30dp"
+            android:text="next"
+            android:textColor="@color/colorWhite" />
+    </LinearLayout>
+
+
+    <LinearLayout android:id="@+id/layoutsix"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/text15"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="150dp"
+            android:fontFamily="@font/sl"
+            android:textColor="@color/colorGrey"
+            android:textSize="35dp" />
+
+        <TextView
+            android:id="@+id/text16"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/sl"
+            android:text="@string/text12"
+            android:textColor="@color/colorGrey"
+            android:textSize="20dp" />
+
+        <EditText
+            android:id="@+id/textfifth"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="20dp"
+            android:fontFamily="@font/sl"
+            android:hint="Enter OTP?"
+            android:inputType="number"
+            android:textSize="18sp" />
+        <TextView
+            android:id="@+id/devid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+
+        <Button
+            android:id="@+id/sixthbtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:layout_gravity="center"
+            android:background="@drawable/mybutton"
+            android:paddingHorizontal="30dp"
+            android:text="next"
+            android:textColor="@color/colorWhite" />
+    </LinearLayout>
+
+
+    <LinearLayout android:id="@+id/layoutseven"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/text17"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="120dp"
+            android:fontFamily="@font/sl"
+            android:text="@string/text13"
+            android:textColor="@color/colorGrey"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/text18"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/sl"
+            android:text="@string/text14"
+            android:autoLink="web"
+            android:linksClickable="true"
+            android:textColor="@color/colorGrey"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/text19"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:fontFamily="@font/sl"
+            android:text="@string/text15"
+            android:autoLink="web"
+            android:linksClickable="true"
+            android:textColor="@color/colorGrey"
+            android:textSize="20dp" />
+
+        <Button
+            android:id="@+id/seventhbtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:layout_gravity="center"
+            android:background="@drawable/mybutton"
+            android:paddingHorizontal="30dp"
+            android:text="Next"
+            android:textColor="@color/colorWhite" />
+    </LinearLayout>
+
+    <LinearLayout android:id="@+id/layouteight"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/text20"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="120dp"
+            android:fontFamily="@font/sl"
+            android:text="@string/text16"
+            android:textColor="@color/colorGrey"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/text21"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/sl"
+            android:layout_marginTop="30dp"
+            android:text="@string/text17"
+            android:autoLink="web"
+            android:linksClickable="true"
+            android:textColor="@color/colorGrey"
+            android:textSize="20dp" />
+
+<!--<TextView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:id="@+id/devid"/>-->
+
+        <Button
+            android:id="@+id/eighthbtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:layout_gravity="center"
+            android:background="@drawable/mybutton"
+            android:paddingHorizontal="30dp"
+            android:text="Accept"
+            android:textColor="@color/colorWhite" />
+    </LinearLayout>
+
+</LinearLayout>

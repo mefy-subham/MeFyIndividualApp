@@ -1,0 +1,857 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".HealthActivity"
+    android:orientation="vertical"
+    android:background="@color/colorWhite"
+    tools:showIn="@layout/app_bar_health">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_gravity="bottom"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/consultbtn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_weight="1"
+            android:text="Consult"
+            android:textSize="16dp" />
+
+        <Button
+            android:id="@+id/healthbtn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_weight="1"
+            android:text="Health"
+            android:textSize="16dp" />
+    </LinearLayout>
+    <RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="40dp"
+    android:layout_gravity="center"
+    >
+    <LinearLayout
+        android:id="@+id/healthlayout"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+        <RelativeLayout
+            android:id="@+id/healthmainlayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="70dp">
+
+            <Button
+                android:id="@+id/healthleftfirst"
+                android:layout_width="40dp"
+                android:layout_height="18dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignTop="@+id/leftbacktv"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/left" />
+
+            <TextView
+                android:id="@+id/leftbacktv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="60dp"
+                android:fontFamily="@font/sl"
+                android:text="@string/health1"
+                android:textColor="@color/colorGrey"
+                android:textSize="18sp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:id="@+id/healthfirsttv"
+                android:layout_width="173dp"
+                android:layout_height="64dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignTop="@+id/healthfirsttoggle"
+                android:layout_marginVertical="20dp"
+                android:paddingTop="15dp"
+                android:text="Do you Have allergies ?"
+                android:textSize="15dp" />
+
+            <Button
+                android:id="@+id/healthfirstbtn"
+                android:layout_width="46dp"
+                android:layout_height="18dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/arrow" />
+
+
+            <ToggleButton
+                android:id="@+id/healthfirsttoggle"
+                android:layout_width="69dp"
+                android:layout_height="37dp"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/healthfirstbtn"
+                android:text="ToggleButton" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/healthsectv"
+                android:layout_width="173dp"
+                android:layout_height="64dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:text="Are sufferring from any disease ?"
+                android:textSize="15dp" />
+
+            <ToggleButton
+                android:id="@+id/healthsectoggle"
+                android:layout_width="69dp"
+                android:layout_height="37dp"
+                android:layout_alignParentTop="true"
+                android:layout_toLeftOf="@+id/healthsecbtn"
+                android:text="ToggleButton" />
+
+            <Button
+                android:id="@+id/healthsecbtn"
+                android:layout_width="46dp"
+                android:layout_height="18dp"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/arrow" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/healththirdtv"
+                android:layout_width="173dp"
+                android:layout_height="64dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="17dp"
+                android:text="Did you have surgeries in the past ?"
+                android:textSize="15sp" />
+
+            <ToggleButton
+                android:id="@+id/healththirdtoggle"
+                android:layout_width="69dp"
+                android:layout_height="37dp"
+                android:layout_alignTop="@+id/healththirdtv"
+                android:layout_toLeftOf="@+id/healththirdbtn"
+                android:text="ToggleButton" />
+
+            <Button
+                android:id="@+id/healththirdbtn"
+                android:layout_width="46dp"
+                android:layout_height="18dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/arrow" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+         >
+
+            <TextView
+                android:id="@+id/healthfourthtv"
+                android:layout_width="173dp"
+                android:layout_height="64dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:text="Does any of your family member suffer from any medical condition ?"
+                android:textSize="15sp" />
+
+            <ToggleButton
+                android:id="@+id/healthfourthtoggle"
+                android:layout_width="69dp"
+                android:layout_height="37dp"
+                android:layout_alignParentTop="true"
+                android:layout_toLeftOf="@+id/healthfourthbtn"
+                android:text="ToggleButton" />
+
+            <Button
+                android:id="@+id/healthfourthbtn"
+                android:layout_width="46dp"
+                android:layout_height="18dp"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="11dp"
+                android:background="@drawable/arrow" />
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/allergy"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+
+        <LinearLayout
+            android:id="@+id/allergydet"
+            android:layout_width="match_parent"
+            android:layout_height="59dp"
+            android:layout_marginVertical="15dp"
+            android:layout_gravity="center"
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/allergyleftfirst"
+                android:layout_width="35dp"
+                android:layout_height="22dp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/left" />
+
+            <TextView
+                android:id="@+id/allergyfirsttv"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="10dp"
+                android:fontFamily="@font/sl"
+                android:text="@string/allergy1"
+                android:paddingTop="15dp"
+                android:textSize="19sp" />
+            <Button
+                android:id="@+id/allergyfirstbtn"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginHorizontal="13dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/view" />
+            <Button
+                android:id="@+id/allergysecbtn"
+                android:layout_width="30dp"
+                android:layout_height="20dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/add" />
+        </LinearLayout>
+
+        <AutoCompleteTextView
+            android:id="@+id/allergyfirstedit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/sl"
+            android:hint="@string/allergy2"
+            android:textSize="18sp" >
+            <requestFocus/>
+        </AutoCompleteTextView>
+
+
+        <AutoCompleteTextView
+            android:id="@+id/allergysecedit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/sl"
+            android:hint="@string/allergy3"
+            android:textSize="18sp"
+            android:layout_marginVertical="10dp">
+            <requestFocus/>
+        </AutoCompleteTextView>
+
+        <AutoCompleteTextView
+            android:id="@+id/allergythirdedit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/sl"
+            android:hint="@string/allergy4"
+            android:textSize="18sp" >
+            <requestFocus/>
+        </AutoCompleteTextView>
+
+        <Button
+            android:id="@+id/allergythirdbtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/mybutton"
+            android:paddingHorizontal="30dp"
+            android:text="Save"
+            android:onClick="postallergy"
+            android:fontFamily="@font/sl"
+            android:textColor="@color/colorWhite" />
+
+    </LinearLayout>
+<LinearLayout
+    android:id="@+id/allergylistview"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:visibility="gone">
+    <ListView
+        android:id="@+id/allergylist"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </ListView>
+</LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/diseasemainlayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone">
+    <LinearLayout
+        android:id="@+id/diseasedet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="15dp"
+        android:layout_gravity="center"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/diseaseleftfirst"
+            android:layout_width="35dp"
+            android:layout_height="20dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/left" />
+        <TextView
+            android:id="@+id/diseasefirsttv"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/sl"
+            android:text="@string/disease1"
+            android:layout_marginHorizontal="10dp"
+            android:textSize="20sp" />
+        <Button
+            android:id="@+id/diseasefirstbtn"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginHorizontal="13dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/view" />
+        <Button
+            android:id="@+id/diseasesecbtn"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/add" />
+    </LinearLayout>
+
+    <AutoCompleteTextView
+        android:id="@+id/diseasefirstedit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/sl"
+        android:layout_below="@+id/diseasedet"
+        android:hint="@string/disease2"
+        android:textSize="18sp" >
+        <requestFocus/>
+    </AutoCompleteTextView>
+
+    <EditText
+        android:id="@+id/diseasesecedit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/sl"
+        android:layout_below="@+id/diseasefirstedit"
+        android:hint="@string/disease3"
+        android:layout_marginVertical="10dp"
+        android:textSize="18sp"
+      />
+
+    <EditText
+        android:id="@+id/diseasethirdedit"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/sl"
+        android:hint="@string/disease4"
+        android:textSize="18sp"
+        android:layout_below="@+id/diseasesecedit"/>
+        <Button
+            android:id="@+id/diseasefifthbtn"
+            android:layout_width="30dp"
+            android:layout_height="20dp"
+            android:layout_alignBottom="@+id/diseasethirdedit"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="7dp"
+            android:layout_marginLeft="5dp"
+            android:background="@drawable/add" />
+        <Button
+            android:id="@+id/diseasethirdbtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:background="@drawable/mybutton"
+            android:fontFamily="@font/sl"
+            android:paddingHorizontal="30dp"
+            android:layout_marginVertical="30dp"
+            android:layout_below="@+id/diseasethirdedit"
+            android:text="Add Medication"
+            android:textColor="@color/colorWhite" />
+
+    <Button
+        android:id="@+id/diseasefourthbtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/diseasethirdbtn"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:background="@drawable/mybutton"
+        android:fontFamily="@font/sl"
+        android:paddingHorizontal="30dp"
+        android:text="Save"
+        android:textColor="@color/colorWhite" />
+
+</RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/surgerymainlayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone"
+        >
+
+        <LinearLayout
+            android:id="@+id/surgerydet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="15dp"
+            android:layout_gravity="center"
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/surgeryleftfirst"
+                android:layout_width="35dp"
+                android:layout_height="20dp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/left" />
+            <TextView
+                android:id="@+id/surgeryfirsttv"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/sl"
+                android:text="@string/surgery1"
+                android:textSize="20sp"
+                android:layout_marginHorizontal="20dp"/>
+
+            <Button
+                android:id="@+id/surgeryfirstbtn"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginHorizontal="9dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/view" />
+
+            <Button
+                android:id="@+id/surgerysecbtn"
+                android:layout_width="30dp"
+                android:layout_height="20dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/add" />
+        </LinearLayout>
+
+        <AutoCompleteTextView
+            android:id="@+id/surgeryfirstedit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/surgerydet"
+            android:fontFamily="@font/sl"
+            android:hint="@string/surgery2"
+            android:textSize="18sp" >
+            <requestFocus/>
+        </AutoCompleteTextView>
+
+        <EditText
+            android:id="@+id/surgerysecedit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/surgeryfirstedit"
+            android:fontFamily="@font/sl"
+            android:layout_marginVertical="10dp"
+            android:hint="@string/surgery3"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/surgerythirdedit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/surgerysecedit"
+            android:fontFamily="@font/sl"
+            android:hint="@string/treat1"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/surgeryfifthbtn"
+            android:layout_width="25dp"
+            android:layout_height="17dp"
+            android:layout_alignBottom="@+id/surgerythirdedit"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="5dp"
+            android:background="@drawable/add" />
+
+        <Button
+            android:id="@+id/surgerythirdbtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:background="@drawable/mybutton"
+            android:fontFamily="@font/sl"
+            android:paddingHorizontal="30dp"
+            android:layout_marginVertical="30dp"
+            android:layout_below="@+id/surgerythirdedit"
+            android:text="Add Medication"
+            android:textColor="@color/colorWhite" />
+
+        <Button
+            android:id="@+id/surgeryfourthbtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/surgerythirdbtn"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:background="@drawable/mybutton"
+            android:onClick="postsurgery"
+            android:fontFamily="@font/sl"
+            android:paddingHorizontal="30dp"
+            android:text="Save"
+            android:textColor="@color/colorWhite" />
+    </RelativeLayout>
+        <LinearLayout
+            android:id="@+id/surgerylistview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone">
+            <ListView
+                android:id="@+id/surgerylist"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </ListView>
+        </LinearLayout>
+    <LinearLayout
+        android:id="@+id/treatementlayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone">
+        <LinearLayout
+            android:id="@+id/treatmentdet"
+            android:layout_width="match_parent"
+            android:layout_height="59dp"
+            android:gravity="center"
+            android:layout_marginVertical="15dp"
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/trtmntleftfirst"
+                android:layout_width="35dp"
+                android:layout_height="20dp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/left" />
+            <TextView
+                android:id="@+id/treatmentfirsttv"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/sl"
+                android:layout_marginTop="8dp"
+                android:text="@string/treat1"
+                android:textSize="20sp"
+                android:layout_marginHorizontal="8dp"/>
+            <Button
+                android:id="@+id/treatmentfirstbtn"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/view" />
+            <Button
+                android:id="@+id/treatmentsecbtn"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/add" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/treatmentsectv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/sl"
+            android:text="@string/treat2"
+            android:textSize="21sp" />
+        <LinearLayout
+            android:id="@+id/uploadlayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginVertical="20dp"
+            android:gravity="center">
+        <Button
+            android:id="@+id/treatmentthirdbtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15dp"
+            android:textColor="@color/colorWhite"
+            android:background="@drawable/mybutton"
+            android:text="@string/treat3"
+            />
+        <Button
+            android:id="@+id/treatmentfourthbtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/mybutton"
+            android:textColor="@color/colorWhite"
+            android:text="@string/treat4"
+            />
+        </LinearLayout>
+    </LinearLayout>
+    <RelativeLayout
+        android:id="@+id/medicationmainlayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:id="@+id/medicationdet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="15dp"
+            android:layout_gravity="center"
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/medleftfirst"
+                android:layout_width="35dp"
+                android:layout_height="20dp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/left" />
+            <TextView
+                android:id="@+id/medicationfirsttv"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/sl"
+                android:text="@string/med1"
+                android:textSize="20sp"
+                android:layout_marginHorizontal="10dp"/>
+
+            <Button
+                android:id="@+id/medicationfirstbtn"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginHorizontal="13dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/view" />
+
+            <Button
+                android:id="@+id/medicationsecbtn"
+                android:layout_width="30dp"
+                android:layout_height="20dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/add" />
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/meidcationfirstedit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/medicationdet"
+            android:fontFamily="@font/sl"
+            android:hint="@string/med2"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/medicationsecedit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/meidcationfirstedit"
+            android:fontFamily="@font/sl"
+            android:hint="@string/med3"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/medicationthirdedit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/medicationsecedit"
+            android:fontFamily="@font/sl"
+            android:hint="@string/med4"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/medicationfourthedit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/medicationthirdedit"
+            android:fontFamily="@font/sl"
+            android:hint="@string/med5"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/medicationfifthedit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/medicationfourthedit"
+            android:fontFamily="@font/sl"
+            android:hint="@string/med6"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/medicationthirdbtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/medicationfifthedit"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:background="@drawable/mybutton"
+            android:fontFamily="@font/sl"
+            android:paddingHorizontal="30dp"
+            android:layout_marginTop="20dp"
+            android:text="Save"
+            android:textColor="@color/colorWhite" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/familymainlayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:id="@+id/familydet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="15dp"
+            android:layout_gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/familyfirsttv"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/sl"
+                android:text="@string/fam1"
+                android:textSize="21sp" />
+
+            <!--<Button-->
+                <!--android:id="@+id/familyfirstbtn"-->
+                <!--android:layout_width="30dp"-->
+                <!--android:layout_height="30dp"-->
+                <!--android:layout_alignParentEnd="true"-->
+                <!--android:layout_alignParentRight="true"-->
+                <!--android:layout_marginHorizontal="15dp"-->
+                <!--android:layout_marginBottom="5dp"-->
+                <!--android:background="@drawable/view" />-->
+
+            <Button
+                android:id="@+id/familysecbtn"
+                android:layout_width="30dp"
+                android:layout_height="20dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/add" />
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/familyfirstedit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/familydet"
+            android:fontFamily="@font/sl"
+            android:hint="@string/fam2"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/familysecedit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/familyfirstedit"
+            android:fontFamily="@font/sl"
+            android:hint="@string/fam3"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/familythirdbtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/familysecedit"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:background="@drawable/mybutton"
+            android:fontFamily="@font/sl"
+            android:paddingHorizontal="30dp"
+            android:layout_marginTop="20dp"
+            android:text="Save"
+            android:textColor="@color/colorWhite" />
+    </RelativeLayout>
+</RelativeLayout>
+
+</RelativeLayout>

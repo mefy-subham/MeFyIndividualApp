@@ -1,0 +1,674 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".ProfileActivity"
+    android:background="@color/colorWhite"
+    tools:showIn="@layout/app_bar_profile">
+
+
+    <LinearLayout
+        android:id="@+id/mainprofile"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+        <RelativeLayout
+            android:id="@+id/imagelayout"
+            android:layout_width="match_parent"
+            android:layout_height="255dp"
+            android:orientation="horizontal"
+            android:paddingTop="30dp">
+
+            <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/imageview"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_centerInParent="true"
+                android:src="@drawable/man"
+                app:civ_border_color="#565656"
+                app:civ_border_width="1dp"
+                android:layout_marginTop="30dp"
+                tools:layout_editor_absoluteX="142dp"
+                tools:layout_editor_absoluteY="168dp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/gradient"
+            android:paddingVertical="10dp">
+
+            <ImageView
+                android:id="@+id/editbtn"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="27dp"
+                android:src="@drawable/edit" />
+        </RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="40dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+            <TextView
+                android:id="@+id/namehint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Name :"
+                android:layout_marginRight="20dp"
+                android:textColor="@color/colorGrey"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/nametxtview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="left"
+                android:gravity="left"
+                android:text="@string/profile4"
+                android:textColor="@color/colorGrey"
+                android:textSize="18sp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+            <TextView
+                android:id="@+id/birthhint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Birth :"
+                android:layout_weight="1"
+                android:layout_marginRight="20dp"
+                android:textColor="@color/colorGrey"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/birthtxtview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/profile5"
+                android:layout_weight="1"
+                android:layout_gravity="left"
+                android:gravity="left"
+                android:textColor="@color/colorGrey"
+                android:textSize="18sp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+            <TextView
+                android:id="@+id/cityhint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="City :"
+                android:layout_weight="1"
+                android:layout_marginRight="20dp"
+                android:textColor="@color/colorGrey"
+                android:textSize="18sp" />
+            <TextView
+                android:id="@+id/citytxtview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="left"
+                android:gravity="left"
+                android:text="@string/profile6"
+                android:textColor="@color/colorGrey"
+                android:textSize="18sp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+            <TextView
+                android:id="@+id/phnhint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Phone :"
+                android:layout_weight="1"
+                android:layout_marginRight="20dp"
+                android:textColor="@color/colorGrey"
+                android:textSize="18sp" />
+            <TextView
+                android:id="@+id/phntxtview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="left"
+                android:gravity="left"
+                android:text="@string/profile7"
+                android:textColor="@color/colorGrey"
+                android:textSize="18sp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+            <TextView
+                android:id="@+id/streethint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Street :"
+                android:layout_weight="1"
+                android:layout_marginRight="20dp"
+                android:textColor="@color/colorGrey"
+                android:textSize="18sp" />
+            <TextView
+                android:id="@+id/streettxtview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                 android:layout_weight="1"
+                android:layout_gravity="left"
+                android:gravity="left"
+                android:text="@string/profile7"
+                android:textColor="@color/colorGrey"
+                android:textSize="18sp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+            <TextView
+                android:id="@+id/pinhint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pin :"
+                android:layout_weight="1"
+                android:layout_marginRight="20dp"
+                android:textColor="@color/colorGrey"
+                android:textSize="18sp" />
+            <TextView
+                android:id="@+id/pintxtview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="left"
+                android:gravity="left"
+                android:text="@string/profile7"
+                android:textColor="@color/colorGrey"
+                android:textSize="18sp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+            <TextView
+                android:id="@+id/marriedhint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Married :"
+                android:layout_weight="1"
+                android:layout_marginRight="20dp"
+                android:textColor="@color/colorGrey"
+                android:textSize="18sp" />
+            <TextView
+                android:id="@+id/marriagetxtview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="left"
+                android:gravity="left"
+                android:text="@string/profile7"
+                android:textColor="@color/colorGrey"
+                android:textSize="18sp" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/mainfirstprofile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <RelativeLayout
+            android:id="@+id/imagelayoutone"
+            android:layout_width="match_parent"
+            android:layout_height="260dp"
+            android:background="@drawable/gradient"
+            android:orientation="horizontal"
+            android:paddingTop="100dp">
+
+            <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/imageviewone"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="129dp"
+                android:src="@drawable/man"
+                app:civ_border_color="#ffffff"
+                app:civ_border_width="1dp"
+                tools:layout_editor_absoluteX="142dp"
+                tools:layout_editor_absoluteY="168dp" />
+
+            <ImageView
+                android:id="@+id/btn"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_gravity="bottom"
+                android:layout_marginBottom="94dp"
+                android:layout_marginRight="100dp"
+                android:src="@drawable/camera" />
+        </RelativeLayout>
+
+            <TextView
+                android:id="@+id/tvprofirst"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:fontFamily="@font/sl"
+                android:padding="20dp"
+                android:text="@string/profile1"
+                android:textColor="@color/colorGrey"
+                android:textSize="18sp" />
+
+
+            <LinearLayout
+                android:id="@+id/firstlayoutpro"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_gravity="center"
+                android:orientation="vertical"
+                android:padding="40dp"
+                android:visibility="visible">
+
+                <EditText
+                    android:id="@+id/edtprofirst"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="20dp"
+                    android:fontFamily="@font/sl"
+                    android:hint="What is your street address"
+                    android:text="address"
+                    android:textSize="18sp" />
+
+                <LinearLayout
+                    android:id="@+id/buttonslayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/nextbtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="@drawable/mybutton"
+                        android:fontFamily="@font/sl"
+                        android:text="Next"
+                        android:textColor="@color/colorWhite" />
+                    <Button
+                        android:id="@+id/donestreetbtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginHorizontal="5dp"
+                        android:background="@drawable/mybutton"
+                        android:fontFamily="@font/sl"
+                        android:text="Done"
+                        android:textColor="@color/colorWhite" />
+                    <Button
+                        android:id="@+id/skipbtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="@drawable/mybutton"
+                        android:fontFamily="@font/sl"
+                        android:text="Skip"
+                        android:textColor="@color/colorWhite" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/thirdlayoutpro"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="40dp"
+                android:visibility="gone">
+
+                <EditText
+                    android:id="@+id/edtprothird"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sl"
+                    android:hint="Enter your pin code?"
+                    android:inputType="number"
+                    android:text="56789"
+                    android:textSize="18sp" />
+
+                <LinearLayout
+                    android:id="@+id/buttonslayoutthird"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/nextthirdbtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="@drawable/mybutton"
+                        android:text="Next"
+                        android:textColor="@color/colorWhite" />
+                    <Button
+                        android:id="@+id/donepinbtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginHorizontal="5dp"
+                        android:background="@drawable/mybutton"
+                        android:text="Done"
+                        android:textColor="@color/colorWhite" />
+                    <Button
+                        android:id="@+id/skipthirdbtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="@drawable/mybutton"
+                        android:text="Skip"
+                        android:textColor="@color/colorWhite" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/fifthlayoutpro"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="40dp"
+                android:visibility="gone">
+
+                <EditText
+                    android:id="@+id/edtprofifth"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sl"
+                    android:hint="Name"
+                    android:textSize="18sp" />
+
+                <LinearLayout
+                    android:id="@+id/buttonslayoutfifth"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/nextfourthbtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="@drawable/mybutton"
+                        android:text="Next"
+                        android:textColor="@color/colorWhite" />
+                    <Button
+                        android:id="@+id/donenamebtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginHorizontal="5dp"
+                        android:background="@drawable/mybutton"
+                        android:text="Done"
+                        android:textColor="@color/colorWhite" />
+                    <Button
+                        android:id="@+id/skipfourthbtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="@drawable/mybutton"
+                        android:text="Skip"
+                        android:textColor="@color/colorWhite" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/sixthlayoutpro"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="40dp"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/edtprosixth"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sl"
+                    android:hint="@string/text9"
+                    android:textSize="18sp" />
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="#04aae4" />
+                <LinearLayout
+                    android:id="@+id/buttonslayoutsixth"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/nextfifthbtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="@drawable/mybutton"
+                        android:text="Next"
+                        android:textColor="@color/colorWhite" />
+                    <Button
+                        android:id="@+id/dobdonebtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginHorizontal="5dp"
+                        android:background="@drawable/mybutton"
+                        android:text="Done"
+                        android:textColor="@color/colorWhite" />
+                    <Button
+                        android:id="@+id/skipfifthbtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="@drawable/mybutton"
+                        android:text="Skip"
+                        android:textColor="@color/colorWhite" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/seventhlayoutpro"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="40dp"
+                android:visibility="gone">
+
+                <EditText
+                    android:id="@+id/edtproseventh"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sl"
+                    android:hint="@string/text10"
+                    android:textSize="18sp" />
+
+                <LinearLayout
+                    android:id="@+id/buttonslayoutseventh"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/nextsixthbtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="@drawable/mybutton"
+                        android:text="Next"
+                        android:textColor="@color/colorWhite" />
+                    <Button
+                        android:id="@+id/citydonebtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginHorizontal="5dp"
+                        android:background="@drawable/mybutton"
+                        android:text="Done"
+                        android:textColor="@color/colorWhite" />
+                    <Button
+                        android:id="@+id/skipsixthbtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="@drawable/mybutton"
+                        android:text="Skip"
+                        android:textColor="@color/colorWhite" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/eightthlayoutpro"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="40dp"
+                android:visibility="gone">
+
+                <EditText
+                    android:id="@+id/edtproeighth"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sl"
+                    android:hint="@string/text11"
+                    android:inputType="number"
+                    android:textSize="18sp" />
+
+                <LinearLayout
+                    android:id="@+id/buttonslayouteight"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/nextsevenththbtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="@drawable/mybutton"
+                        android:text="Next"
+                        android:textColor="@color/colorWhite" />
+                    <Button
+                        android:id="@+id/nmbrdonebtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginHorizontal="5dp"
+                        android:background="@drawable/mybutton"
+                        android:text="Done"
+                        android:textColor="@color/colorWhite" />
+                    <Button
+                        android:id="@+id/skipseventhbtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="@drawable/mybutton"
+                        android:text="Skip"
+                        android:textColor="@color/colorWhite" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/fourthlayoutpro"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="40dp"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:id="@+id/buttonslayoutfourth"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="70dp"
+                    android:orientation="horizontal">
+
+                    <RadioGroup
+                        android:id="@+id/marrigestatus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/married"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:checked="true"
+                            android:fontFamily="@font/sl"
+                            android:text="@string/profile2"
+                            android:textColor="@color/colorGrey"
+                            android:textSize="16dp" />
+
+                        <RadioButton
+                            android:id="@+id/unmarried"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/sl"
+                            android:text="@string/profile3"
+                            android:textColor="@color/colorGrey"
+                            android:textSize="16dp" />
+                    </RadioGroup>
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/donebtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginVertical="20dp"
+                    android:background="@drawable/mybutton"
+                    android:fontFamily="@font/sl"
+                    android:text="Done"
+                    android:textColor="@color/colorWhite" />
+            </LinearLayout>
+
+
+    </LinearLayout>
+</LinearLayout>
+
+
+
+
+

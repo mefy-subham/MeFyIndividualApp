@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DoctorList"
+    android:orientation="vertical"
+    android:padding="30dp">
+
+
+    <LinearLayout
+        android:id="@+id/doctordet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginVertical="20dp">
+
+        <ImageView
+            android:id="@+id/doctorimg"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/img" />
+
+        <TextView
+            android:id="@+id/doctorfirsttv"
+            android:layout_width="145dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginBottom="-27dp"
+            android:layout_marginLeft="64dp"
+            android:fontFamily="@font/sl"
+            android:textColor="@color/colorGrey"
+            android:textSize="13dp" />
+
+        <TextView
+            android:id="@+id/doctorsectv"
+            android:layout_width="145dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginBottom="-24dp"
+            android:layout_marginLeft="64dp"
+            android:fontFamily="@font/sl"
+            android:textColor="@color/colorGrey"
+            android:textSize="13dp" />
+
+        <TextView
+            android:id="@+id/doctorthirdtv"
+            android:layout_width="145dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginBottom="-22dp"
+            android:layout_marginLeft="64dp"
+            android:fontFamily="@font/sl"
+            android:textColor="@color/colorGrey"
+            android:textSize="13dp" />
+
+        <TextView
+            android:id="@+id/doctorfourthtv"
+            android:layout_width="145dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginBottom="-20dp"
+            android:layout_marginLeft="64dp"
+            android:fontFamily="@font/sl"
+            android:textColor="@color/colorGrey"
+            android:textSize="13dp" />
+    </LinearLayout>
+        <LinearLayout
+            android:id="@+id/doc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginVertical="10dp">
+
+            <!--<Button-->
+                <!--android:id="@+id/button"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_weight="1"-->
+                <!--android:text="Button" />-->
+
+            <!--<Spinner-->
+                <!--android:id="@+id/spinner1"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content" />-->
+
+            <Button
+                android:id="@+id/econsultbtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/mybutton"
+                />
+
+            <Button
+                android:id="@+id/clinicvisit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/mybutton"/>
+
+            <Button
+                android:id="@+id/datepicker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="5dp"
+                android:layout_marginTop="50dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:background="@drawable/mybutton"
+                android:textSize="10dp"
+                android:text="Select date"
+                android:textColor="@color/colorWhite" />
+        </LinearLayout>
+
+
+</LinearLayout>

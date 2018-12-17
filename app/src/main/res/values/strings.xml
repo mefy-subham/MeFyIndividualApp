@@ -1,0 +1,103 @@
+<resources>
+    <string name="app_name">MeFyIndividual</string>
+    <string name="text1">Welcome to\n<b>MeFy</b></string>
+    <string name="text2">Lets Introduce Ourselves,\nIn 5 simple steps</string>
+    <string name="text3">Hello</string>
+    <string name="text4">When It Comes To Health,\nMen And Women arent\nEqual</string>
+    <string name="text5">May I know your gender?</string>
+    <string name="text6">Male</string>
+    <string name="text7">Female</string>
+    <string name="text8">Others</string>
+    <string name="text9">Health Parameters Are \nDependent on Your Age</string>
+    <string name="text10">Lets Find Out If We Have \nOur Edge Clinic In Your \nCity </string>
+    <string name="text11">Lets Secure Your Data</string>
+    <string name="text12">Validate your access</string>
+    <string name="text13">To continue to use the service, \nyou must concent to our Privacy
+     Policy</string>
+    <string name="text14">https://www.indi.mefy.care/privacypolicy</string>
+    <string name="text15">and confirm that you are over 18 \nyears of age.You can withdraw \n
+    your consent by emailing \nsupport@mefy.care</string>
+    <string name="text16">Remember that MeFy is not a \ndoctor.Always consult a medical \n
+    professional and call emergency \nservices in case of an\n emergency.</string>
+    <string name="text17">See our disclaimer (https:// \nwww.indi.mefy.care/disclaimer). /n
+    By using our services you also /naccept our Terms(https:// \nwww.indi.mefy.care/terms).</string>
+    <string name="text18">What would you like to do\n next?</string>
+    <string name="title_activity_navigation">NavigationActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+    <string name="title_activity_dashboard">DashboardActivity</string>
+    <string name="title_section1">Section 1</string>
+    <string name="title_section2">Section 2</string>
+    <string name="title_section3">Section 3</string>
+
+    <string name="action_example">Example action</string>
+    <string name="title_activity_consult">ConsultActivity</string>
+    <string name="title_activity_appointment">AppointmentActivity</string>
+    <string name="title_activity_report">ReportActivity</string>
+    <string name="title_activity_family">FamilyActivity</string>
+    <string name="title_activity_health">HealthActivity</string>
+    <string name="title_activity_account">AccountActivity</string>
+    <string name="title_activity_profile">ProfileActivity</string>
+    <string name="profile1">To enable us to personalize our \nservice,we need some of your \n
+        personal data</string>
+    <string name="profile2">Married</string>
+    <string name="profile3">Unmarried</string>
+    <string name="profile4">Name</string>
+    <string name="profile5">Birth</string>
+    <string name="profile6">City</string>
+    <string name="profile7">Phone</string>
+    <string name="health1"><b>Lets enter your health record to earn more credit</b></string>
+    *
+    <string name="health2">Do you have allergies?</string>
+    <string name="health3">Are you suffering from any diseases?</string>
+    <string name="health4">Did you had surguries in the past?</string>
+    <string name="health5">Does any of your family member suffer
+        from any medical condition?</string>
+    <string name="allergy1">Allergy details</string>
+    <string name="allergy2">Allergy type</string>
+    <string name="allergy3">Allergy with</string>
+    <string name="allergy4">Allergy since</string>
+    <string name="disease1">Disease details</string>
+    <string name="disease2">Disease</string>
+    <string name="disease3">Suffering since</string>
+    <string name="disease4">Symptoms</string>
+    <string name="surgery1">Surgery details</string>
+    <string name="surgery2">Surgery</string>
+    <string name="surgery3">Surgery date</string>
+    <string name="treat1">Treatment details</string>
+    <string name="treat2">Upload any treatment details \nfor any surgery</string>
+    <string name="treat3">Upload</string>
+    <string name="treat4">Skip</string>
+    <string name="med1">Medication Details</string>
+    <string name="med2">Medicine Name</string>
+    <string name="med3">Dosage</string>
+    <string name="med4">Frequency</string>
+    <string name="med5">Start Date</string>
+    <string name="med6">End Date</string>
+    <string name="fam1">Family Medication Details</string>
+    <string name="fam2">Family Member</string>
+    <string name="fam3">Medical Condition</string>
+    <string name="family1">Family Member</string>
+    <string name="family2">Name</string>
+    <string name="family3">Gender</string>
+    <string name="family4">DOB</string>
+    <string name="family5">Relationship</string>
+    <string name="family6">Mobile Number</string>
+    <string-array name="Gender_Names">
+        <item>Male</item>
+        <item>Female</item>
+        <item>Other</item>
+    </string-array>
+    <string name="appoint1">What appointment would you\n like to book for</string>
+    <string name="appoint2">Doctor</string>
+    <string name="appoint3">Edge Test</string>
+    <string name="appoint4">Nano Home Visit</string>
+    <string name="appoint5">Health Coach</string>
+    <string name="apiurl">http://ec2-13-232-207-92.ap-south-1.compute.amazonaws.com:5023/api</string>
+</resources>

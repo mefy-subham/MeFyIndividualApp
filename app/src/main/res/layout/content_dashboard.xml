@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".DashboardActivity"
+    tools:showIn="@layout/app_bar_dashboard"
+    android:layout_gravity="center"
+    android:paddingHorizontal="30dp"
+    android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/wishtext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:fontFamily="@font/sl"
+            android:textColor="@color/colorGrey"
+            android:textSize="25dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvlike"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/sl"
+            android:text="@string/text18"
+            android:textColor="@color/colorGrey"
+            android:textSize="20dp" />
+
+    <Button
+        android:id="@+id/Dashfirstbtn"
+        android:layout_width="290dp"
+        android:layout_height="55dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/mybutton"
+        android:paddingHorizontal="30dp"
+        android:text="Update Health Record"
+        android:textColor="@color/colorWhite" />
+
+        <Button
+            android:id="@+id/Dashsecbtn"
+            android:layout_width="290dp"
+            android:layout_height="55dp"
+            android:layout_gravity="center"
+            android:layout_marginVertical="5dp"
+            android:background="@drawable/mybutton"
+            android:paddingHorizontal="50dp"
+            android:text="Consult a Doctor"
+            android:textColor="@color/colorWhite" />
+
+        <Button
+            android:id="@+id/Dashthirdbtn"
+            android:layout_width="290dp"
+            android:layout_height="55dp"
+            android:layout_gravity="center"
+            android:layout_marginVertical="5dp"
+            android:background="@drawable/mybutton"
+            android:paddingHorizontal="30dp"
+            android:text="Book an Appointment"
+            android:onClick="intentappoint"
+            android:textColor="@color/colorWhite" />
+
+        <Button
+            android:id="@+id/Dashfourthbtn"
+            android:layout_width="290dp"
+            android:layout_height="55dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/mybutton"
+            android:paddingHorizontal="60dp"
+            android:text="View Records"
+            android:textColor="@color/colorWhite" />
+    </LinearLayout>
+<!--</LinearLayout>-->
