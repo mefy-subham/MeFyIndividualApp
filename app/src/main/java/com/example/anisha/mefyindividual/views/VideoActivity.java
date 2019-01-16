@@ -1,20 +1,27 @@
 package com.example.anisha.mefyindividual.views;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.media.AudioAttributes;
 import android.media.AudioFocusRequest;
 import android.media.AudioManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.anisha.mefyindividual.R;
 import com.example.anisha.mefyindividual.constant.APPConstant;
@@ -96,24 +103,19 @@ public class VideoActivity extends AppCompatActivity {
     private String value;
     private String room_name,fcm,u_name;
     private String value_send;
-
-
-    private static final String[] VIDEO_CODEC_NAMES = new String[] {
-            Vp8Codec.NAME, H264Codec.NAME, Vp9Codec.NAME
-    };
-
-    private static final String[] AUDIO_CODEC_NAMES = new String[] {
-            IsacCodec.NAME, OpusCodec.NAME, PcmaCodec.NAME, PcmuCodec.NAME, G722Codec.NAME
-    };
+    private Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_video);
         videoStatusTextView = findViewById(R.id.video_status_textview);
-// Share your camera
+        primaryVideoView = findViewById(R.id.primary_video_view);
+        thumbnailVideoView = findViewById(R.id.thumbnail_video_view);
+        context=this;
+/*// Share your camera
         CameraCapturer cameraCapturer = new CameraCapturer(this, CameraCapturer.CameraSource.FRONT_CAMERA);
-        LocalVideoTrack localVideoTrack = LocalVideoTrack.create(this, true, cameraCapturer);
+        localVideoTrack = LocalVideoTrack.create(this, true, cameraCapturer);
 
 // Render camera to a view
         primaryVideoView = findViewById(R.id.primary_video_view);
@@ -128,16 +130,41 @@ public class VideoActivity extends AppCompatActivity {
         CameraCapturer.CameraSource cameraSource = cameraCapturer.getCameraSource();
         cameraCapturer.switchCamera();
         primaryVideoView.setMirror(cameraSource == CameraCapturer.CameraSource.FRONT_CAMERA);
-
-        // Get AudioManager
-        audioManager = (AudioManager) this.getSystemService(Context.AUDIO_SERVICE);
-
-// Route audio through speaker
+*/
+        //Get AudioManager
+        audioManager = (AudioManager)getSystemService(Context.AUDIO_SERVICE);
         audioManager.setSpeakerphoneOn(true);
 
-// Route audio through headset
-        audioManager.setSpeakerphoneOn(false);
+//        localAudioTrack = LocalAudioTrack.create(context, true, LOCAL_AUDIO_TRACK_NAME);
 
+        preferences = PreferenceManager.getDefaultSharedPreferences(this);
+
+        /*
+         * Enable changing the volume using the up/down keys during a conversation
+         */
+        setVolumeControlStream(AudioManager.STREAM_VOICE_CALL);
+
+        /*
+         * Needed for setting/abandoning audio focus during call
+         */
+
+            Toast.makeText(this, "Hay", Toast.LENGTH_SHORT).show();
+
+
+        Log.d("VActi","onCreate | createAudioAndVideoTracks");
+
+        /*
+         * Check camera and microphone permissions. Needed in Android M.
+         */
+        if (!checkPermissionForCameraAndMicrophone()) {
+            requestPermissionForCameraAndMicrophone();
+        }else
+            createAudioAndVideoTracks();
+
+        /*
+         * Set the initial state of the UI
+         */
+        //intializeUI();
         Intent i = getIntent();
         room_name = i.getExtras().getString("room");
         value_send = i.getExtras().getString("value");
@@ -172,6 +199,7 @@ public class VideoActivity extends AppCompatActivity {
                 finish();
             }
         });
+
     }
     public void connectToRoom(String roomName) {
         configureAudio(true);
@@ -212,13 +240,13 @@ public class VideoActivity extends AppCompatActivity {
 
         System.out.println("VideoActivity | connect roomListener:" + roomListener());
         System.out.println("VideoActivity | this" + VideoActivity.this);
-        room = Video.connect(VideoActivity.this, connectOptionsBuilder.build(), roomListener());
+        room = Video.connect(this, connectOptionsBuilder.build(), roomListener());
         //setDisconnectAction();
     }
     private AudioCodec getAudioCodecPreference(String key, String defaultValue) {
-        /*final String audioCodecName = "OpusCodec.NAME";*/
+        final String audioCodecName = "OpusCodec.NAME";
 
-       /* switch (audioCodecName) {
+        switch (audioCodecName) {
             case IsacCodec.NAME:
                 return new IsacCodec();
             case OpusCodec.NAME:
@@ -231,12 +259,12 @@ public class VideoActivity extends AppCompatActivity {
                 return new G722Codec();
             default:
                 return new OpusCodec();
-        }*/
-        return new OpusCodec();
+        }
+//        return new OpusCodec();
 
     }
     private VideoCodec getVideoCodecPreference(String key, String defaultValue) {
-        /*final String videoCodecName = "Vp8Codec.NAME";
+        final String videoCodecName = "Vp8Codec.NAME";
 
         switch (videoCodecName) {
             case Vp8Codec.NAME:
@@ -249,8 +277,8 @@ public class VideoActivity extends AppCompatActivity {
                 return new Vp9Codec();
             default:
                 return new Vp8Codec();
-        }*/
-        return new Vp8Codec();
+        }
+//        return new Vp8Codec();
     }
     private Room.Listener roomListener() {
         return new Room.Listener() {
@@ -269,7 +297,7 @@ public class VideoActivity extends AppCompatActivity {
             @Override
             public void onConnectFailure(Room room, TwilioException e) {
                 videoStatusTextView.setText("Failed to connect");
-                //configureAudio(false);
+                configureAudio(false);
                 //intializeUI();
             }
 
@@ -361,8 +389,7 @@ public class VideoActivity extends AppCompatActivity {
             localVideoTrack.removeRenderer(primaryVideoView);
             localVideoTrack.addRenderer(thumbnailVideoView);
             localVideoView = thumbnailVideoView;
-            thumbnailVideoView.setMirror(cameraCapturerCompat.getCameraSource() ==
-                    CameraCapturer.CameraSource.FRONT_CAMERA);
+            thumbnailVideoView.setMirror(cameraCapturerCompat.getCameraSource() == CameraCapturer.CameraSource.FRONT_CAMERA);
         }
     }
     private RemoteParticipant.Listener remoteParticipantListener() {
@@ -547,8 +574,7 @@ public class VideoActivity extends AppCompatActivity {
                 localVideoTrack.addRenderer(primaryVideoView);
             }
             localVideoView = primaryVideoView;
-            primaryVideoView.setMirror(cameraCapturerCompat.getCameraSource() ==
-                    CameraCapturer.CameraSource.FRONT_CAMERA);
+            primaryVideoView.setMirror(cameraCapturerCompat.getCameraSource() == CameraCapturer.CameraSource.FRONT_CAMERA);
         }
     }
     private void configureAudio(boolean enable) {
@@ -634,7 +660,128 @@ public class VideoActivity extends AppCompatActivity {
 
         }
     }
+    private void createAudioAndVideoTracks() {
+        // Share your microphone
+        localAudioTrack = LocalAudioTrack.create(this, true, LOCAL_AUDIO_TRACK_NAME);
+        System.out.println("VideoActivity | createAudioAndVideoTracks |LocalAudioTrack :" + localAudioTrack);
 
+        // Share your camera
+        cameraCapturerCompat = new CameraCapturerCompat(this, getAvailableCameraSource());
+        localVideoTrack = LocalVideoTrack.create(this, true, cameraCapturerCompat.getVideoCapturer(), LOCAL_VIDEO_TRACK_NAME);
+        primaryVideoView.setMirror(true);
+        localVideoTrack.addRenderer(primaryVideoView);
+        localVideoView = primaryVideoView;
+        System.out.println("VideoActivity | createAudioAndVideoTracks |localVideoTrack :" + localVideoTrack);
+    }
+    private boolean checkPermissionForCameraAndMicrophone(){
+        int resultCamera = ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA);
+        int resultMic = ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO);
+        return resultCamera == PackageManager.PERMISSION_GRANTED &&
+                resultMic == PackageManager.PERMISSION_GRANTED;
+    }
 
+    private void requestPermissionForCameraAndMicrophone(){
+        if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.CAMERA) ||
+                ActivityCompat.shouldShowRequestPermissionRationale(this,
+                        Manifest.permission.RECORD_AUDIO)) {
+            Toast.makeText(this,
+                    "permissions_needed",
+                    Toast.LENGTH_LONG).show();
+        } else {
+            ActivityCompat.requestPermissions(
+                    this,
+                    new String[]{Manifest.permission.CAMERA, Manifest.permission.RECORD_AUDIO},
+                    CAMERA_MIC_PERMISSION_REQUEST_CODE);
+        }
+    }
+    private CameraCapturer.CameraSource getAvailableCameraSource() {
+        return (CameraCapturer.isSourceAvailable(CameraCapturer.CameraSource.FRONT_CAMERA)) ?
+                (CameraCapturer.CameraSource.FRONT_CAMERA) :
+                (CameraCapturer.CameraSource.BACK_CAMERA);
+    }
+    @Override
+    protected  void onResume() {
+        System.out.println("VideoActivity | onResume | Resume Started");
+        super.onResume();
+
+        /*
+         * Update preferred audio and video codec in case changed in settings
+         */
+        audioCodec = getAudioCodecPreference(APPConstant.PREF_AUDIO_CODEC,
+                APPConstant.PREF_AUDIO_CODEC_DEFAULT);
+        videoCodec = getVideoCodecPreference(APPConstant.PREF_VIDEO_CODEC,
+                APPConstant.PREF_VIDEO_CODEC_DEFAULT);
+
+        /*
+         * Get latest encoding parameters
+         */
+        final EncodingParameters newEncodingParameters = getEncodingParameters();
+
+        /*
+         * If the local video track was released when the app was put in the background, recreate.
+         */
+        if (localVideoTrack == null && checkPermissionForCameraAndMicrophone()) {
+            localVideoTrack = LocalVideoTrack.create(this,
+                    true,
+                    cameraCapturerCompat.getVideoCapturer(),
+                    LOCAL_VIDEO_TRACK_NAME);
+            localVideoTrack.addRenderer(localVideoView);
+
+            /*
+             * If connected to a Room then share the local video track.
+             */
+            if (localParticipant != null) {
+                localParticipant.publishTrack(localVideoTrack);
+
+                /*
+                 * Update encoding parameters if they have changed.
+                 */
+                if (!newEncodingParameters.equals(encodingParameters)) {
+                    localParticipant.setEncodingParameters(newEncodingParameters);
+                }
+            }
+        }
+
+        /*
+         * Update encoding parameters
+         */
+        encodingParameters = newEncodingParameters;
+    }
+    private EncodingParameters getEncodingParameters() {
+        final int maxAudioBitrate = Integer.parseInt(
+                preferences.getString(APPConstant.PREF_SENDER_MAX_AUDIO_BITRATE,
+                        APPConstant.PREF_SENDER_MAX_AUDIO_BITRATE_DEFAULT));
+        final int maxVideoBitrate = Integer.parseInt(
+                preferences.getString(APPConstant.PREF_SENDER_MAX_VIDEO_BITRATE,
+                        APPConstant.PREF_SENDER_MAX_VIDEO_BITRATE_DEFAULT));
+
+        return new EncodingParameters(maxAudioBitrate, maxVideoBitrate);
+    }
+    @Override
+    protected void onDestroy() {
+        /*
+         * Always disconnect from the room before leaving the Activity to
+         * ensure any memory allocated to the Room resource is freed.
+         */
+        if (room != null && room.getState() != Room.State.DISCONNECTED) {
+            room.disconnect();
+            disconnectedFromOnDestroy = true;
+        }
+
+        /*
+         * Release the local audio and video tracks ensuring any memory allocated to audio
+         * or video is freed.
+         */
+        if (localAudioTrack != null) {
+            localAudioTrack.release();
+            localAudioTrack = null;
+        }
+        if (localVideoTrack != null) {
+            localVideoTrack.release();
+            localVideoTrack = null;
+        }
+
+        super.onDestroy();
+    }
 
 }
