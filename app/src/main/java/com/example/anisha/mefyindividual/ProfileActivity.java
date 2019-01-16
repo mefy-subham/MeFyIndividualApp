@@ -61,8 +61,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ProfileActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+public class ProfileActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     public static SharedPreferences.Editor bundle;
     public static Bundle myBundle = new Bundle();
     public static final String MyPREFERENCES = "MyPrefs" ;

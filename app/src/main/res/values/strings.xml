@@ -100,4 +100,6 @@
     <string name="appoint4">Nano Home Visit</string>
     <string name="appoint5">Health Coach</string>
     <string name="apiurl">http://ec2-13-232-207-92.ap-south-1.compute.amazonaws.com:5023/api</string>
+    <string name="title_activity_video">VideoActivity</string>
+    <string name="room_status">Status</string>
 </resources>

@@ -4,8 +4,6 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -28,9 +26,7 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class DashboardActivity extends AppCompatActivity
-
-        implements NavigationView.OnNavigationItemSelectedListener {
+public class DashboardActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     DrawerLayout drawer;
     NavigationView navigationView;
     Toolbar toolbar=null;
@@ -47,6 +43,7 @@ public class DashboardActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
         TextView wishtext = (TextView)findViewById(R.id.wishtext);
         Dashfirstbtn = (Button)findViewById(R.id.Dashfirstbtn);
+        Dashthirdbtn = (Button) findViewById(R.id.Dashthirdbtn);
         Dashfirstbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -208,7 +205,7 @@ public class DashboardActivity extends AppCompatActivity
 
                             progress.dismiss();
                         } catch (JSONException e) {
-// TODO Auto-generated catch block
+                            // TODO Auto-generated catch block
                             progress.dismiss();
                             System.out.println("cache------------------------------------------>>>>>>>>>>>>>>");
                             e.printStackTrace();

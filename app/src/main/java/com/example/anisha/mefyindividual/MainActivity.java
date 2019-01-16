@@ -37,11 +37,11 @@ private int mCurrentPage;
         addDotIndicator(position);
         mSlideViewPager.addOnPageChangeListener(viewListner);
         mnext.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View view) {
+            @Override
+            public void onClick(View view) {
 //        Intent myIntent = new Intent(getBaseContext(),   LoginActivity.class);
 //        startActivity(myIntent);
-        userIdvalidate();
+            userIdvalidate();
 
     }
 });
