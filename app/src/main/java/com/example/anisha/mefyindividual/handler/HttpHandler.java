@@ -50,10 +50,10 @@ public class HttpHandler implements iHttpController
     }
 
     @Override
-    public void twilioToken(Context context,String operationFlag,String userName) {
+    public void twilioToken(Context context,String operationFlag) {
         _httpController = HttpController.getInstance();
         _httpController.set_resultHandler(_resultHandler);
-        _httpController.twilioToken(context,operationFlag,userName);
+        _httpController.twilioToken(context,operationFlag);
     }
 
     public void set_resultHandler(iHttpResultHandler _resultHandler) {

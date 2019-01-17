@@ -153,7 +153,7 @@ public class HttpController implements iHttpController
     }
 
     @Override
-    public void twilioToken(Context context,String operationFlag,String userName) {
+    public void twilioToken(Context context,String operationFlag) {
 
 
         if(_requestQueue == null)
@@ -161,7 +161,7 @@ public class HttpController implements iHttpController
             _requestQueue = Volley.newRequestQueue(context.getApplicationContext());
         }
 
-        String url = APIConstant.TWILIO_TOKEN+userName;
+        String url = APIConstant.TWILIO_TOKEN;
 
 
 

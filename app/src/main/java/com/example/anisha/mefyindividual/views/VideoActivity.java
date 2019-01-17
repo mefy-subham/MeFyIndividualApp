@@ -299,6 +299,8 @@ public class VideoActivity extends AppCompatActivity {
                 videoStatusTextView.setText("Failed to connect");
                 configureAudio(false);
                 //intializeUI();
+                System.out.println("VideoActivity| connectToRoom | onConnectFailure:" + e);
+
             }
 
             @Override

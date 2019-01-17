@@ -34,11 +34,12 @@
             android:name=".MainActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait">
-            <intent-filter>
+            <!--Initial for quick testing -->
+            <!--<intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            </intent-filter>-->
         </activity>
 
         <service
@@ -74,7 +75,14 @@
             android:configChanges="orientation"
             android:label="@string/title_activity_appointment"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme" >
+        <intent-filter>
+            <!--Initial for quick testing -->
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
         <activity
             android:name=".ReportActivity"
             android:configChanges="orientation"

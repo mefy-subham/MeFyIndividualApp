@@ -9,5 +9,5 @@ import com.example.anisha.mefyindividual.model.RoomModel;
 public interface iHttpController {
     void placeCall(CallModel callModel, Context context, String operationFlag);
     void roomCreation(RoomModel roomModel,Context context,String operationFlag);
-    void twilioToken(Context context,String operationFlag,String userName);
+    void twilioToken(Context context,String operationFlag);
 }

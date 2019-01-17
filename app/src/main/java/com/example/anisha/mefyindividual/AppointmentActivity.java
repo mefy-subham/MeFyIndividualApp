@@ -305,7 +305,7 @@ public class AppointmentActivity extends AppCompatActivity
                         userName="me";
                         System.out.println("AppointmentActivity | mainViewholder.vCall.setOnClickListener :"+userName);
                         //Twilio Token Creation API
-                        httpHandler.twilioToken(AppointmentActivity.this,APPConstant.TWILIO_TOKEN_OPERATION,userName);
+                        httpHandler.twilioToken(AppointmentActivity.this,APPConstant.TWILIO_TOKEN_OPERATION);
                         httpHandler.set_resultHandler(serverResultHandler);
                         //Room Creation API
                         httpHandler.roomCreation(roomModel,AppointmentActivity.this,APPConstant.ROOM_CREATION_OPERATION);
