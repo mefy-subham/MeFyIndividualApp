@@ -6,6 +6,7 @@ import com.android.volley.RequestQueue;
 import com.example.anisha.mefyindividual.controller.HttpController;
 import com.example.anisha.mefyindividual.iinterface.iHttpController;
 import com.example.anisha.mefyindividual.iinterface.iHttpResultHandler;
+import com.example.anisha.mefyindividual.model.CallIdModel;
 import com.example.anisha.mefyindividual.model.CallModel;
 import com.example.anisha.mefyindividual.model.RoomModel;
 
@@ -43,6 +44,14 @@ public class HttpHandler implements iHttpController
     }
 
     @Override
+    public void saveCall(CallIdModel callIdModel, Context context, String operationFlag) {
+
+        _httpController = HttpController.getInstance();
+        _httpController.set_resultHandler(_resultHandler);
+        _httpController.saveCall(callIdModel,context, operationFlag);
+    }
+
+    @Override
     public void roomCreation(RoomModel roomModel, Context context, String operationFlag) {
         _httpController = HttpController.getInstance();
         _httpController.set_resultHandler(_resultHandler);
@@ -50,10 +59,10 @@ public class HttpHandler implements iHttpController
     }
 
     @Override
-    public void twilioToken(Context context,String operationFlag) {
+    public void twilioToken(Context context,String operationFlag,String userName,String roomName) {
         _httpController = HttpController.getInstance();
         _httpController.set_resultHandler(_resultHandler);
-        _httpController.twilioToken(context,operationFlag);
+        _httpController.twilioToken(context,operationFlag,userName,roomName);
     }
 
     public void set_resultHandler(iHttpResultHandler _resultHandler) {

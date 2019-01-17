@@ -18,6 +18,7 @@ import com.example.anisha.mefyindividual.constant.APIConstant;
 import com.example.anisha.mefyindividual.constant.APPConstant;
 import com.example.anisha.mefyindividual.iinterface.iHttpController;
 import com.example.anisha.mefyindividual.iinterface.iHttpResultHandler;
+import com.example.anisha.mefyindividual.model.CallIdModel;
 import com.example.anisha.mefyindividual.model.CallModel;
 import com.example.anisha.mefyindividual.model.RoomModel;
 import com.example.anisha.mefyindividual.model.TokenDataModel;
@@ -105,6 +106,52 @@ public class HttpController implements iHttpController
     }
 
     @Override
+    public void saveCall(CallIdModel callIdModel, Context context, String operationFlag) {
+        if(_requestQueue == null)
+        {
+            _requestQueue = Volley.newRequestQueue(context.getApplicationContext());
+        }
+
+        String url = APIConstant.CALL_HISTORY;
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        // Display the first 500 characters of the response string.
+                        //_videoResume.setVisibility(View.VISIBLE);
+
+                        if(_resultHandler != null)
+                        {
+                            _resultHandler.onSuccess(response,operationFlag);
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                if(_resultHandler != null)
+                {
+                    _resultHandler.onError(error,operationFlag);
+                }
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+
+                return callIdModel.getParamMap(callIdModel);
+            }
+        };
+        // Add the request to the RequestQueue.
+
+        //30 seconds timeout
+        int socketTimeout = 30000;
+        RetryPolicy policy = new DefaultRetryPolicy(socketTimeout, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+        stringRequest.setRetryPolicy(policy);
+
+        _requestQueue.add(stringRequest);
+    }
+
+    @Override
     public void roomCreation(RoomModel roomModel, Context context,String operationFlag) {
 
         if(_requestQueue == null)
@@ -153,7 +200,7 @@ public class HttpController implements iHttpController
     }
 
     @Override
-    public void twilioToken(Context context,String operationFlag) {
+    public void twilioToken(Context context,String operationFlag,String userName,String roomName) {
 
 
         if(_requestQueue == null)
@@ -161,7 +208,8 @@ public class HttpController implements iHttpController
             _requestQueue = Volley.newRequestQueue(context.getApplicationContext());
         }
 
-        String url = APIConstant.TWILIO_TOKEN;
+
+        String url = APIConstant.TWILIO_TOKEN+userName+"&roomname="+roomName;
 
 
 
