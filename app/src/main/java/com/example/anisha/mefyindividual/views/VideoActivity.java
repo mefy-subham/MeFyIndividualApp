@@ -1,6 +1,7 @@
 package com.example.anisha.mefyindividual.views;
 
 import android.Manifest;
+import android.app.PictureInPictureParams;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -11,6 +12,7 @@ import android.media.AudioManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
@@ -18,6 +20,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.util.Rational;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
@@ -64,11 +67,6 @@ import java.util.Collections;
 
 public class VideoActivity extends AppCompatActivity {
 
-
-
-
-
-
     private AudioCodec audioCodec;
     private VideoCodec videoCodec;
 
@@ -90,6 +88,7 @@ public class VideoActivity extends AppCompatActivity {
     private boolean previousMicrophoneMute;
     private boolean disconnectedFromOnDestroy;
     private TextView videoStatusTextView;
+    private FloatingActionButton actionClose;
     private FloatingActionButton connectActionFab;
     private FloatingActionButton switchCameraActionFab;
     private FloatingActionButton localVideoActionFab;
@@ -164,7 +163,7 @@ public class VideoActivity extends AppCompatActivity {
         /*
          * Set the initial state of the UI
          */
-        //intializeUI();
+        intializeUI();
         Intent i = getIntent();
         room_name = i.getExtras().getString("room");
         value_send = i.getExtras().getString("value");
@@ -182,7 +181,7 @@ public class VideoActivity extends AppCompatActivity {
             System.out.println("VideoActivity | connectToRoom | case:calling | room:" + room_name);
             connectToRoom(room_name);
         }
-        FloatingActionButton fab = findViewById(R.id.fab);
+        FloatingActionButton fab = findViewById(R.id.action_close);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -201,6 +200,126 @@ public class VideoActivity extends AppCompatActivity {
         });
 
     }
+
+    private void intializeUI() {
+
+        PackageManager packageManager = getApplicationContext().getPackageManager();
+        mFramePlayer = findViewById(R.id.fragment);
+        actionClose = findViewById(R.id.action_close);
+        switchCameraActionFab = findViewById(R.id.switch_camera_action_fab);
+        localVideoActionFab = findViewById(R.id.local_video_action_fab);
+        muteActionFab = findViewById(R.id.mute_action_fab);
+        moreActionFab = findViewById(R.id.more_action_fab);
+        switchCameraActionFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (cameraCapturerCompat != null) {
+                    CameraCapturer.CameraSource cameraSource = cameraCapturerCompat.getCameraSource();
+                    cameraCapturerCompat.switchCamera();
+                    if (thumbnailVideoView.getVisibility() == View.VISIBLE) {
+                        thumbnailVideoView.setMirror(cameraSource == CameraCapturer.CameraSource.BACK_CAMERA);
+                    } else {
+                        primaryVideoView.setMirror(cameraSource == CameraCapturer.CameraSource.BACK_CAMERA);
+                    }
+                }
+            }
+        });
+        localVideoActionFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (localVideoTrack != null) {
+                    boolean enable = !localVideoTrack.isEnabled();
+                    localVideoTrack.enable(enable);
+                    int icon;
+                    if (enable) {
+                        icon = R.drawable.ic_videocam_white_24dp;
+                        switchCameraActionFab.show();
+                    } else {
+                        icon = R.drawable.ic_videocam_off_black_24dp;
+                        switchCameraActionFab.hide();
+                    }
+                    localVideoActionFab.setImageDrawable(
+                            ContextCompat.getDrawable(VideoActivity.this, icon));
+                }
+            }
+        });
+
+        muteActionFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (localAudioTrack != null) {
+                    boolean enable = !localAudioTrack.isEnabled();
+                    localAudioTrack.enable(enable);
+                    int icon = enable ?
+                            R.drawable.ic_mic_white_24dp : R.drawable.ic_mic_off_white_24dp;
+                    muteActionFab.setImageDrawable(ContextCompat.getDrawable(
+                            VideoActivity.this, icon));
+                }
+            }
+        });
+        moreActionFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                    System.out.println("VideoActivity | OnClick | PIP Check:" + PackageManager.FEATURE_PICTURE_IN_PICTURE);
+                    System.out.println("VideoActivity | OnClick | PIP Check:" + packageManager.hasSystemFeature(PackageManager.FEATURE_PICTURE_IN_PICTURE));
+                    if (packageManager.hasSystemFeature(PackageManager.FEATURE_PICTURE_IN_PICTURE)) {
+
+
+                        //enterPictureInPictureMode();
+
+                        if (android.os.Build.VERSION.SDK_INT >= 26) {
+                            //Trigger PiP mode
+                            try {
+                                Rational rational = new Rational(mFramePlayer.getWidth(),
+                                        mFramePlayer.getHeight());
+
+                                PictureInPictureParams mParams =
+                                        new PictureInPictureParams.Builder().setAspectRatio(rational).build();
+
+                                enterPictureInPictureMode(mParams);
+                            } catch (IllegalStateException e) {
+                                e.printStackTrace();
+                            }
+                        }
+
+                        System.out.println("VideoActivity | OnClick | PIP Call");
+                    } else {
+                        System.out.println("VideoActivity | OnClick | PIP not Called");
+                        //Intent Call for not using 26
+                        /*Intent intent = new Intent(VideoActivity.this, MainActivity.class);
+                        startActivity(intent);*/
+
+                    }
+                } else {
+                    Toast.makeText(VideoActivity.this, "Video Paused", Toast.LENGTH_SHORT).show();
+                    //Intent Call for not using 26
+                    /*Intent intent = new Intent(VideoActivity.this, MainActivity.class);
+                    startActivity(intent);*/
+                }
+
+
+            }
+        });
+
+        actionClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CallModel callModel = new CallModel();
+                callModel.set_userInfo(u_name);
+                callModel.set_roomId(room_name);
+                callModel.set_fcmToken(fcm);
+                callModel.set_status(value_send);
+                callModel.set_type("decline");
+                HttpHandler httpHandler = HttpHandler.getInstance();
+                ServerResultHandler serverResultHandler = new ServerResultHandler(VideoActivity.this);
+                httpHandler.set_resultHandler(serverResultHandler);
+                httpHandler.placeCall(callModel, VideoActivity.this, APPConstant.SEND_FCM_NOTIFICATION_OPERATION);
+                finish();
+            }
+        });
+    }
+
     public void connectToRoom(String roomName) {
         configureAudio(true);
         ConnectOptions.Builder connectOptionsBuilder = new ConnectOptions.Builder(accessToken).roomName(roomName);
@@ -298,7 +417,7 @@ public class VideoActivity extends AppCompatActivity {
             public void onConnectFailure(Room room, TwilioException e) {
                 videoStatusTextView.setText("Failed to connect");
                 configureAudio(false);
-                //intializeUI();
+                intializeUI();
                 System.out.println("VideoActivity| connectToRoom | onConnectFailure:" + e);
 
             }
@@ -311,7 +430,7 @@ public class VideoActivity extends AppCompatActivity {
                 // Only reinitialize the UI if disconnect was not called from onDestroy()
                 if (!disconnectedFromOnDestroy) {
                     configureAudio(false);
-                    //intializeUI();
+                    intializeUI();
                     moveLocalVideoToPrimaryView();
                 }
             }
@@ -785,5 +904,25 @@ public class VideoActivity extends AppCompatActivity {
 
         super.onDestroy();
     }
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
+        if (requestCode == CAMERA_MIC_PERMISSION_REQUEST_CODE) {
+            boolean cameraAndMicPermissionGranted = true;
 
+            for (int grantResult : grantResults) {
+                cameraAndMicPermissionGranted &= grantResult == PackageManager.PERMISSION_GRANTED;
+            }
+
+            if (cameraAndMicPermissionGranted) {
+                createAudioAndVideoTracks();
+
+            } else {
+                Toast.makeText(this,
+                        R.string.permissions_needed,
+                        Toast.LENGTH_LONG).show();
+            }
+        }
+    }
 }

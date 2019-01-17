@@ -305,8 +305,9 @@ public class AppointmentActivity extends AppCompatActivity
                         userName="me";
                         System.out.println("AppointmentActivity | mainViewholder.vCall.setOnClickListener :"+userName);
                         //Room Creation API
-                        httpHandler.roomCreation(roomModel,AppointmentActivity.this,APPConstant.ROOM_CREATION_OPERATION);
                         httpHandler.set_resultHandler(serverResultHandler);
+                        httpHandler.roomCreation(roomModel,AppointmentActivity.this,APPConstant.ROOM_CREATION_OPERATION);
+
 
 
 
@@ -433,11 +434,11 @@ public class AppointmentActivity extends AppCompatActivity
                 String timeStamp = String.valueOf(TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis()));
                 roomModel = new RoomModel();
                 roomModel.setRoomName(user_Id + timeStamp);
-
+                System.out.println("AppointmentActivity | ServerResultHandler | onSuccess | ROOM_CREATION_OPERATION | roomModel");
                 HttpHandler httpHandler = HttpHandler.getInstance();
-                ServerResultHandler serverResultHandler = new ServerResultHandler(AppointmentActivity.this);
+                ServerResultHandler serverResultHandler = new ServerResultHandler(_context);
                 //Twilio Token Creation API
-                httpHandler.twilioToken(AppointmentActivity.this,APPConstant.TWILIO_TOKEN_OPERATION,userName,roomModel.getRoomName());
+                httpHandler.twilioToken(_context,APPConstant.TWILIO_TOKEN_OPERATION,userName,roomModel.getRoomName());
                 httpHandler.set_resultHandler(serverResultHandler);
 
             }
@@ -450,7 +451,7 @@ public class AppointmentActivity extends AppCompatActivity
 
                 twilio_token = tokenDataModel.get_twilioToken();
                 HttpHandler httpHandler = HttpHandler.getInstance();
-                ServerResultHandler serverResultHandler = new ServerResultHandler(AppointmentActivity.this);
+                ServerResultHandler serverResultHandler = new ServerResultHandler(_context);
                 CallModel callModel = new CallModel();
                 callModel.set_fcmToken(toThisDoc);
                 callModel.set_roomId(roomModel.getRoomName());
@@ -458,10 +459,10 @@ public class AppointmentActivity extends AppCompatActivity
                 callModel.set_type("call");
                 callModel.set_userInfo(userName);
                 //FCM Send API
-                httpHandler.placeCall(callModel, AppointmentActivity.this, APPConstant.SEND_FCM_NOTIFICATION_OPERATION);
+                httpHandler.placeCall(callModel, _context, APPConstant.SEND_FCM_NOTIFICATION_OPERATION);
                 httpHandler.set_resultHandler(serverResultHandler);
 
-                Intent intent = new Intent(AppointmentActivity.this, VideoActivity.class);
+                Intent intent = new Intent(_context, VideoActivity.class);
                 intent.putExtra("fcm", callModel.get_fcmToken());
                 intent.putExtra("room", callModel.get_roomId());
                 intent.putExtra("status", callModel.get_status());
