@@ -29,6 +29,7 @@
             android:resizeableActivity="true"
             android:supportsPictureInPicture="true"
             android:launchMode="singleTask"
+            android:autoRemoveFromRecents="true"
             android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
         <activity
             android:name=".MainActivity"
