@@ -36,11 +36,13 @@
             android:configChanges="orientation"
             android:screenOrientation="portrait">
             <!--Initial for quick testing -->
+<!--
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+-->
         </activity>
 
         <service
@@ -78,11 +80,11 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" >
             <!--Initial for quick testing -->
-            <!--<intent-filter>
+            <intent-filter>
             <action android:name="android.intent.action.MAIN" />
 
             <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>-->
+        </intent-filter>
         </activity>
         <activity
             android:name=".ReportActivity"

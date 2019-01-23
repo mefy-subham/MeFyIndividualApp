@@ -51,6 +51,8 @@ public class CallingUI extends AppCompatActivity {
         Uri ringtoneUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE);
         Ringtone ringtoneSound = RingtoneManager.getRingtone(getApplicationContext(), ringtoneUri);
         System.out.println("Main | Play.onClick | ringtone:" +ringtoneSound);
+
+
         if (ringtoneSound != null) {
             ringtoneSound.play();
             vib = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);

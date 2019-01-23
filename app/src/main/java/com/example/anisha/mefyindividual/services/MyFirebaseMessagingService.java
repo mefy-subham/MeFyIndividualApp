@@ -4,10 +4,13 @@ import android.app.Activity;
 import android.content.Intent;
 import android.util.Log;
 
+import com.example.anisha.mefyindividual.constant.APPConstant;
+import com.example.anisha.mefyindividual.controller.UiController;
 import com.example.anisha.mefyindividual.handler.UserHandler;
 import com.example.anisha.mefyindividual.manager.SharedPreferenceManager;
 import com.example.anisha.mefyindividual.model.UserDataModel;
 import com.example.anisha.mefyindividual.views.CallingUI;
+import com.example.anisha.mefyindividual.views.VideoActivity;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
@@ -46,15 +49,27 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             String room = remoteMessage.getData().get("roomId").toString();
             System.out.println("MyFirebaseMessagingService | remoteMessage.getData() | Name: "+name);
             System.out.println("MyFirebaseMessagingService | remoteMessage.getData() | Room: "+room);
-            Intent intent = new Intent(this, CallingUI.class);
-            intent.putExtra("name",name);
-            intent.putExtra("room",room);
-            System.out.println("Calling Class | Called");
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            System.out.println("Intent Flag | Set");
-            intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-            getApplicationContext().startActivity(intent);
-            System.out.println("Intent | Called");
+            String type = remoteMessage.getData().get(APPConstant.type);
+            if(remoteMessage.getData().get("type").toString().equalsIgnoreCase("decline")){
+                System.out.println("MyFirebaseMessagingService | decline | :"+ remoteMessage.getData().get("type").toString());
+                UiController uiController=UiController.getInstance();
+                uiController.notifyObservers(remoteMessage.getData().get("type").toString());
+            }else {
+
+                System.out.println("RemoteMessage | remoteMessage.getData(): " + remoteMessage.getData());
+
+                Intent intent = new Intent(this, VideoActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra(APPConstant.caller_fcmToken, remoteMessage.getData().get(APPConstant.caller_fcmToken).toString());
+                intent.putExtra(APPConstant.caller_image_url, remoteMessage.getData().get(APPConstant.caller_image_url).toString());
+                intent.putExtra(APPConstant.recording_url, remoteMessage.getData().get(APPConstant.recording_url).toString());
+                intent.putExtra(APPConstant.userInfo, remoteMessage.getData().get(APPConstant.userInfo).toString());
+                intent.putExtra(APPConstant.roomId, remoteMessage.getData().get(APPConstant.roomId).toString());
+                intent.putExtra(APPConstant.type, remoteMessage.getData().get(APPConstant.roomId).toString());
+                intent.putExtra(APPConstant.status, remoteMessage.getData().get(APPConstant.roomId).toString());
+                getApplicationContext().startActivity(intent);
+
+            }
 
 
 

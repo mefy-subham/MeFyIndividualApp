@@ -37,7 +37,7 @@ public class HttpHandler implements iHttpController
 
     @Override
     public void placeCall(CallModel callModel, Context context, String operationFlag) {
-
+        //System.out.println("HttpHandler | placeCall | callModel: "+callModel.getStatus());
         _httpController = HttpController.getInstance();
         _httpController.set_resultHandler(_resultHandler);
         _httpController.placeCall(callModel,context, operationFlag);

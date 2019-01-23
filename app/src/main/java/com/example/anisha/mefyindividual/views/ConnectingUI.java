@@ -13,6 +13,7 @@ import com.example.anisha.mefyindividual.constant.APPConstant;
 import com.example.anisha.mefyindividual.handler.HttpHandler;
 import com.example.anisha.mefyindividual.iinterface.iHttpResultHandler;
 import com.example.anisha.mefyindividual.model.CallModel;
+import com.example.anisha.mefyindividual.model.RoomModel;
 import com.example.anisha.mefyindividual.model.TokenDataModel;
 
 import org.json.JSONObject;
@@ -20,7 +21,7 @@ import org.json.JSONObject;
 public class ConnectingUI extends AppCompatActivity {
 
     private Button _decline;
-    private String room_name,value_send,fcm,u_name;
+    private String room_name,status,fcm,u_name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,11 +29,11 @@ public class ConnectingUI extends AppCompatActivity {
         setContentView(R.layout.activity_connecting_ui);
         Intent i = getIntent();
         room_name = i.getExtras().getString("room");
-        value_send = i.getExtras().getString("status");
+        status = i.getExtras().getString("status");
         fcm = i.getExtras().getString("fcm");
         u_name = i.getExtras().getString("u_name");
         System.out.println("ConnectingUI | room----------->>>>>>>" + room_name);
-        System.out.println("ConnectingUI | status----------->>>>>>>" + value_send);
+        System.out.println("ConnectingUI | status----------->>>>>>>" + status);
         System.out.println("ConnectingUI | fcm----------->>>>>>>" + fcm);
         System.out.println("ConnectingUI | u_name----------->>>>>>>" + u_name);
         _decline=(Button)findViewById(R.id.btn_decline);
@@ -42,11 +43,11 @@ public class ConnectingUI extends AppCompatActivity {
                 //-----------Make The Room Destroy-------------
 
                 CallModel callModel=new CallModel();
-                callModel.set_userInfo(u_name);
-                callModel.set_roomId(room_name);
-                callModel.set_fcmToken(fcm);
-                callModel.set_status(value_send);
-                callModel.set_type("decline");
+                callModel.setUserInfo(u_name);
+                callModel.setRoomId(room_name);
+                callModel.setCallee_fcmToken(fcm);
+                callModel.setStatus(status);
+                callModel.setType("decline");
                 HttpHandler httpHandler = HttpHandler.getInstance();
                 ServerResultHandler serverResultHandler = new ServerResultHandler(ConnectingUI.this);
                 httpHandler.set_resultHandler(serverResultHandler);
@@ -69,6 +70,11 @@ public class ConnectingUI extends AppCompatActivity {
             if (operation_flag.equalsIgnoreCase(APPConstant.SEND_FCM_NOTIFICATION_OPERATION)) {
 
             }
+
+        }
+
+        @Override
+        public void onRoom(RoomModel roomModel, String operation_flag) {
 
         }
 

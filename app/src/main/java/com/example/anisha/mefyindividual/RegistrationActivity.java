@@ -458,4 +458,5 @@ public class RegistrationActivity extends AppCompatActivity {
 
         requestQueue.add(jsonObjectRequest);
     }
+
 }

@@ -1,10 +1,12 @@
 package com.example.anisha.mefyindividual;
 
+import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.provider.Settings;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -64,6 +66,7 @@ public class LoginActivity extends AppCompatActivity {
         tvOtpSec = (TextView)findViewById(R.id.tvOtpSec);
         devid = (TextView)findViewById(R.id.devid);
 //String device = devid.getText().toString();
+        //Permission for Video Call
 
         deviceid = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
 //        devid.setText(id);
@@ -264,5 +267,6 @@ public class LoginActivity extends AppCompatActivity {
         });
         requestQueue.add(jsonObjectRequest);
     }
+
 
 }

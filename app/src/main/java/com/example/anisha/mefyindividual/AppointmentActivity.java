@@ -1,10 +1,12 @@
 package com.example.anisha.mefyindividual;
 
+import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -39,6 +41,7 @@ import com.example.anisha.mefyindividual.constant.APPConstant;
 import com.example.anisha.mefyindividual.handler.DocHandler;
 import com.example.anisha.mefyindividual.handler.HttpHandler;
 import com.example.anisha.mefyindividual.iinterface.iHttpResultHandler;
+import com.example.anisha.mefyindividual.manager.SharedPreferenceManager;
 import com.example.anisha.mefyindividual.model.CallModel;
 import com.example.anisha.mefyindividual.model.DocDataModel;
 import com.example.anisha.mefyindividual.model.RoomModel;
@@ -85,8 +88,9 @@ public class AppointmentActivity extends AppCompatActivity
     private ArrayList<String> datafortoken = new ArrayList<>();
     private String user_Id = "Fixed";
     private String twilio_token;
-    private RoomModel roomModel;
+    private RoomModel roomModelGlobal;
     private String toThisDoc;
+    private static final int CAMERA_MIC_PERMISSION_REQUEST_CODE = 1;
 
     //    public Integer[] appoint_img = {
 //        R.drawable.mefy_logo, R.drawable.mefy_logo
@@ -121,7 +125,7 @@ public class AppointmentActivity extends AppCompatActivity
 //        book = (Button)findViewById(R.id.book);
         appointfirstlayout = (LinearLayout) findViewById(R.id.appointfirstlayout);
         appointseclayout = (LinearLayout) findViewById(R.id.appointseclayout);
-
+        requestPermissionForCameraAndMicrophone();
 
         appointfirstbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -300,13 +304,21 @@ public class AppointmentActivity extends AppCompatActivity
                     //System.out.println("AppointmentActivity | getView | mainViewholder.vCall.setOnClickListener | datafortoken :" + datafortoken.get(position));
                         toThisDoc = datafortoken.get(position);
                         System.out.println("Your Token : " + toThisDoc);
+                        userName="Ind";
+                        progress = new ProgressDialog(AppointmentActivity.this);
+                        progress.setMessage("Connecting doctor...");
+                        progress.setCancelable(false);
+                        progress.show();
+                        String timeStamp = String.valueOf(TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis()));
+                        roomModelGlobal = new RoomModel();
+                        roomModelGlobal.setRoomName(user_Id + timeStamp);
                         HttpHandler httpHandler = HttpHandler.getInstance();
                         ServerResultHandler serverResultHandler = new ServerResultHandler(AppointmentActivity.this);
-                        userName="me";
+
                         System.out.println("AppointmentActivity | mainViewholder.vCall.setOnClickListener :"+userName);
                         //Room Creation API
                         httpHandler.set_resultHandler(serverResultHandler);
-                        httpHandler.roomCreation(roomModel,AppointmentActivity.this,APPConstant.ROOM_CREATION_OPERATION);
+                        httpHandler.roomCreation(roomModelGlobal,AppointmentActivity.this,APPConstant.ROOM_CREATION_OPERATION);
 
 
 
@@ -428,21 +440,24 @@ public class AppointmentActivity extends AppCompatActivity
                 //httpHandler.set_resultHandler(serverResultHandler);
             }
             if (operation_flag.equalsIgnoreCase(APPConstant.ROOM_CREATION_OPERATION)) {
-                System.out.println("AppointmentActivity | ServerResultHandler | onSuccess | ROOM_CREATION_OPERATION");
 
 
-                String timeStamp = String.valueOf(TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis()));
-                roomModel = new RoomModel();
-                roomModel.setRoomName(user_Id + timeStamp);
-                System.out.println("AppointmentActivity | ServerResultHandler | onSuccess | ROOM_CREATION_OPERATION | roomModel");
-                HttpHandler httpHandler = HttpHandler.getInstance();
-                ServerResultHandler serverResultHandler = new ServerResultHandler(_context);
-                //Twilio Token Creation API
-                httpHandler.twilioToken(_context,APPConstant.TWILIO_TOKEN_OPERATION,userName,roomModel.getRoomName());
-                httpHandler.set_resultHandler(serverResultHandler);
 
             }
 
+        }
+
+        @Override
+        public void onRoom(RoomModel roomModel, String operation_flag) {
+            System.out.println("AppointmentActivity | ServerResultHandler | onSuccess | ROOM_CREATION_OPERATION");
+
+            roomModelGlobal = roomModel;
+            System.out.println("AppointmentActivity | ServerResultHandler | onRoom | ROOM_CREATION_OPERATION | roomModel");
+            HttpHandler httpHandler = HttpHandler.getInstance();
+            ServerResultHandler serverResultHandler = new ServerResultHandler(_context);
+            //Twilio Token Creation API
+            httpHandler.set_resultHandler(serverResultHandler);
+            httpHandler.twilioToken(_context,APPConstant.TWILIO_TOKEN_OPERATION,userName,roomModel.getRoomName());
         }
 
         @Override
@@ -453,24 +468,34 @@ public class AppointmentActivity extends AppCompatActivity
                 HttpHandler httpHandler = HttpHandler.getInstance();
                 ServerResultHandler serverResultHandler = new ServerResultHandler(_context);
                 CallModel callModel = new CallModel();
-                callModel.set_fcmToken(toThisDoc);
-                callModel.set_roomId(roomModel.getRoomName());
-                callModel.set_status("10");
-                callModel.set_type("call");
-                callModel.set_userInfo(userName);
+                callModel.setCallee_fcmToken(toThisDoc);
+                callModel.setRoomId(roomModelGlobal.getRoomName());
+                callModel.setStatus("10");
+                callModel.setType("call");
+                callModel.setUserInfo(userName);
+                callModel.setCaller_fcmToken(SharedPreferenceManager.getFcmTokenSharedPreference(AppointmentActivity.this));
+                callModel.setCaller_image_url("ABC");
+                callModel.setRecording_url(roomModelGlobal.getRecordingURL());
                 //FCM Send API
-                httpHandler.placeCall(callModel, _context, APPConstant.SEND_FCM_NOTIFICATION_OPERATION);
                 httpHandler.set_resultHandler(serverResultHandler);
+                System.out.println("AppointmentActivity | ServerResultHandler | onSuccess | placeCall ");
+                httpHandler.placeCall(callModel, _context, APPConstant.SEND_FCM_NOTIFICATION_OPERATION);
+
 
                 Intent intent = new Intent(_context, VideoActivity.class);
-                intent.putExtra("fcm", callModel.get_fcmToken());
-                intent.putExtra("room", callModel.get_roomId());
-                intent.putExtra("status", callModel.get_status());
-                intent.putExtra("u_name", callModel.get_userInfo());
-                intent.putExtra("token",twilio_token);
-                intent.putExtra("value","Success");
+                intent.putExtra(APPConstant.callee_fcmToken, callModel.getCallee_fcmToken());
+                intent.putExtra(APPConstant.caller_fcmToken, callModel.getCaller_fcmToken());
+                intent.putExtra(APPConstant.caller_image_url, callModel.getCaller_image_url());
+                intent.putExtra(APPConstant.recording_url, callModel.getRecording_url());
+                intent.putExtra(APPConstant.userInfo, callModel.getUserInfo());
+                intent.putExtra(APPConstant.roomId, callModel.getRoomId());
+                intent.putExtra(APPConstant.type, callModel.getType());
+                intent.putExtra(APPConstant.status, callModel.getStatus());
+                intent.putExtra(APPConstant.ACCESS_TOKEN,twilio_token);
+                if(progress.isShowing())
+                    progress.dismiss();
                 startActivity(intent);
-                System.out.println("AppointmentActivity | ServerResultHandler | onSuccess | TWILIO_TOKEN_OPERATION | onToken: "+twilio_token);
+
 
             }
 
@@ -491,6 +516,21 @@ public class AppointmentActivity extends AppCompatActivity
 
         }
     }
+    private void requestPermissionForCameraAndMicrophone(){
+        if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.CAMERA) ||
+                ActivityCompat.shouldShowRequestPermissionRationale(this,
+                        Manifest.permission.RECORD_AUDIO)) {
+            Toast.makeText(this,
+                    "permissions_needed",
+                    Toast.LENGTH_LONG).show();
+        } else {
+            ActivityCompat.requestPermissions(
+                    this,
+                    new String[]{Manifest.permission.CAMERA, Manifest.permission.RECORD_AUDIO},
+                    CAMERA_MIC_PERMISSION_REQUEST_CODE);
+        }
+    }
+
 }
 
 

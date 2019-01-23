@@ -35,4 +35,18 @@ public class APPConstant {
             IsacCodec.NAME, OpusCodec.NAME, PcmaCodec.NAME, PcmuCodec.NAME, G722Codec.NAME
     };
 
+    //APP Constant for Sending data To intent
+    public static final String roomId = "roomId";
+    public static final String userInfo = "userInfo";
+    public static final String type = "type";
+    public static final String status = "status";
+    public static final String caller_fcmToken = "caller_fcmToken";
+    public static final String callee_fcmToken = "callee_fcmToken";
+    public static final String caller_image_url = "caller_image_url";
+    public static final String recording_url = "recording_url";
+
+    //Access Token
+    public static final String ACCESS_TOKEN = "accesstoken";
+
+
 }

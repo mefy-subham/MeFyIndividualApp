@@ -62,6 +62,14 @@ public class HttpController implements iHttpController
         {
             _requestQueue = Volley.newRequestQueue(context.getApplicationContext());
         }
+        System.out.println("HttpController | placeCall | getStatus: "+callModel.getStatus());
+        System.out.println("HttpController | placeCall | getCallee_fcmToken: "+callModel.getCallee_fcmToken());
+        System.out.println("HttpController | placeCall | getCaller_fcmToken: "+callModel.getCaller_fcmToken());
+        System.out.println("HttpController | placeCall | getCaller_image_url: "+callModel.getCaller_image_url());
+        System.out.println("HttpController | placeCall | getRecording_url: "+callModel.getRecording_url());
+        System.out.println("HttpController | placeCall | getRoomId: "+callModel.getRoomId());
+        System.out.println("HttpController | placeCall | getType: "+callModel.getType());
+        System.out.println("HttpController | placeCall | getUserInfo: "+callModel.getUserInfo());
 
         String url = APIConstant.SEND_FCM_NOTIFICATION;
 
@@ -69,9 +77,9 @@ public class HttpController implements iHttpController
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        // Display the first 500 characters of the response string.
-                        //_videoResume.setVisibility(View.VISIBLE);
 
+                        System.out.println("HttpController | placeCall | callModel: "+callModel.getStatus());
+                        System.out.println("HttpController | placeCall | onResponse: "+response);
                         if(_resultHandler != null)
                         {
                             _resultHandler.onSuccess(response,operationFlag);
@@ -84,13 +92,14 @@ public class HttpController implements iHttpController
                 if(_resultHandler != null)
                 {
                     _resultHandler.onError(error,operationFlag);
+                    System.out.println("HttpController | placeCall | VolleyError: "+error);
                 }
             }
         }) {
             @Override
             protected Map<String, String> getParams() {
                 //CallModel.getParamMap()
-
+                System.out.println("HttpController | placeCall | callModel.getParamMap(callModel): "+callModel.getParamMap(callModel));
                 return callModel.getParamMap(callModel);
             }
         };
@@ -161,42 +170,60 @@ public class HttpController implements iHttpController
 
         String url = APIConstant.CREATE_ROOM;
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        // Display the first 500 characters of the response string.
-                        //_videoResume.setVisibility(View.VISIBLE);
+        JSONObject roomCreation = new JSONObject();
+        try {
+            roomCreation.put(APIConstant.NAME, roomModel.getRoomName());
 
-                        if(_resultHandler != null)
-                        {
-                            _resultHandler.onSuccess(response,operationFlag);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        JsonObjectRequest jsObjRequest = new JsonObjectRequest(Request.Method.POST, url, roomCreation,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        System.out.println("HttpController | CREATE_ROOM"+response);
+                        RoomModel resultRoomModel = new RoomModel();
+
+                        try {
+                            resultRoomModel.setRoomName(roomModel.getRoomName());
+                            resultRoomModel.setRecordingURL(response.getString("url"));
+                            System.out.println("HttpController | CREATE_ROOM :"+response.getString("url"));
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
                         }
+
+
+
+                        if ( _resultHandler!= null)
+                            _resultHandler.onRoom(resultRoomModel, APPConstant.ROOM_CREATION_OPERATION);
                     }
-                }, new Response.ErrorListener() {
+
+                }
+                , new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                if(_resultHandler != null)
-                {
-                    _resultHandler.onError(error,operationFlag);
-                }
+                VolleyLog.d(this.toString(), "Error: " + error.getMessage());
             }
         }) {
             @Override
-            protected Map<String, String> getParams() {
-                //CallModel.getParamMap()
-
-                return null;
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> headers = new HashMap<String, String>();
+                headers.put("Content-Type", "application/json");
+                //headers.put("Authorization", Utils.get_jwtToken());
+                return headers;
             }
+
         };
-        // Add the request to the RequestQueue.
 
         //30 seconds timeout
         int socketTimeout = 30000;
         RetryPolicy policy = new DefaultRetryPolicy(socketTimeout, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
-        stringRequest.setRetryPolicy(policy);
+        jsObjRequest.setRetryPolicy(policy);
 
-        _requestQueue.add(stringRequest);
+        _requestQueue.add(jsObjRequest);
+
     }
 
     @Override
