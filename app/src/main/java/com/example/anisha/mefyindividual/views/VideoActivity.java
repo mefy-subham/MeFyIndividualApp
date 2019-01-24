@@ -15,6 +15,7 @@ import android.media.AudioManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.os.PowerManager;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
@@ -75,6 +76,7 @@ import com.twilio.video.VideoView;
 import com.twilio.video.Vp8Codec;
 import com.twilio.video.Vp9Codec;
 
+import java.security.IdentityScope;
 import java.util.Collections;
 
 public class VideoActivity extends AppCompatActivity implements iObserver {
@@ -106,7 +108,7 @@ public class VideoActivity extends AppCompatActivity implements iObserver {
     private FloatingActionButton localVideoActionFab;
     private FloatingActionButton muteActionFab;
     private FloatingActionButton moreActionFab;
-    private String remoteParticipantIdentity;
+    private String remoteParticipantIdentity = "temp";
     private SharedPreferences preferences;
 
     private FrameLayout mFramePlayer;
@@ -114,8 +116,8 @@ public class VideoActivity extends AppCompatActivity implements iObserver {
     private Context context;
 
     private String room_name,u_name,status,caller_fcmToken,callee_fcm,caller_image_url,recording_url,type;
-    private final static int INTERVAL = 42000; //42 milliseconds
-    Handler handler;
+    private final static int INTERVAL = 8000; //42 milliseconds
+
 
 
     @Override
@@ -128,6 +130,30 @@ public class VideoActivity extends AppCompatActivity implements iObserver {
         context=this;
         mFramePlayer = findViewById(R.id.fragment);
 
+        /*Handler handler = new Handler();
+
+            handler.postDelayed(new Runnable() {
+
+                public void run() {
+                    if(remoteParticipantIdentity.equalsIgnoreCase("temp")){
+                        System.out.println("VideoActivity | postDelayed | remoteParticipantIdentity:" + remoteParticipantIdentity);
+                        //Toast.makeText(context, "Hi", Toast.LENGTH_SHORT).show();
+                        finish();
+
+                    handler.postDelayed(this, INTERVAL);}
+                }
+            }, INTERVAL);*/
+        new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                //Do something here
+                System.out.println("VideoActivity | postDelayed | remoteParticipantIdentity:" + remoteParticipantIdentity);
+                if(remoteParticipantIdentity.equalsIgnoreCase("temp"))
+                    //Toast.makeText(context, "Hi", Toast.LENGTH_SHORT).show();
+                    finish();
+
+                }
+        }, INTERVAL);
 
         UiController uiController= UiController.getInstance();
         uiController.registerObserver(this);
@@ -712,29 +738,7 @@ public class VideoActivity extends AppCompatActivity implements iObserver {
         Toast.makeText(context, R.string.calldisconnect, Toast.LENGTH_SHORT).show();
         finish();
 
-        handler = new Handler();
-        handler.postDelayed(new Runnable(){
-            public void run(){
-                //do something
-                //finishAffinity();
-                //System.exit(0);
-                    /*HttpHandler httpHandler = HttpHandler.getInstance();
-                    ServerResultHandler serverResultHandler = new ServerResultHandler(CallingUI.this);
-                    httpHandler.set_resultHandler(serverResultHandler);
-                    CallModel callModel = new CallModel();
-                    callModel.setUserInfo(u_name);
-                    callModel.setRoomId(room_name);
-                    callModel.setCallee_fcmToken(caller_fcmToken);
-                    callModel.setStatus(status);
-                    callModel.setType("decline");
-                    callModel.setRecording_url("Support");
-                    callModel.setCaller_image_url("ABC");
-                    callModel.setCaller_fcmToken("callee_fcm");
-                    httpHandler.placeCall(callModel,CallingUI.this,APPConstant.SEND_FCM_NOTIFICATION_OPERATION);*/
-                finish();
-                handler.postDelayed(this, INTERVAL);
-            }
-        }, INTERVAL);
+
         //videoStatusTextView.setText("RemoteParticipant " + remoteParticipant.getIdentity() +" left.");
 
         if (!remoteParticipant.getIdentity().equals(remoteParticipantIdentity)) {
