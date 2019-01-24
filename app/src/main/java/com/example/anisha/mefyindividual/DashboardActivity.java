@@ -1,9 +1,11 @@
 package com.example.anisha.mefyindividual;
 
+import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -15,6 +17,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -35,6 +38,7 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
     public static final String MyPREFERENCES = "MyPrefs" ;
     TextView drawerusername;
     ProgressDialog progress;
+    private static final int CAMERA_MIC_PERMISSION_REQUEST_CODE = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +55,10 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
                 startActivity(intent);
             }
         });
+
+        //requesting Permission For Camera And Microphone
+        requestPermissionForCameraAndMicrophone();
+
 //        Dashthirdbtn.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
@@ -59,7 +67,7 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
 //            }
 //        });
 
-        System.out.println("view dashboard--------------->>>>>>>>>>>>>>>>>");
+        //System.out.println("view dashboard--------------->>>>>>>>>>>>>>>>>");
 
         // NAVIGATION DRAWER
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -79,9 +87,9 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
         userid = prefs.getString("userId","");
         myUserId = prefs.getString("myUserId","");
         role = "individual";
-        System.out.println("id------------------------->>"+individualId);
-        System.out.println("userId-------------->>>>>>>>"+userid);
-        System.out.println("myUserId---------->>>>>>>>>>>>>>"+myUserId);
+        //System.out.println("id------------------------->>"+individualId);
+        //System.out.println("userId-------------->>>>>>>>"+userid);
+        //System.out.println("myUserId---------->>>>>>>>>>>>>>"+myUserId);
         getProfile();
     }
     public void intentappoint(View view){
@@ -181,22 +189,22 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
         String url = "http://ec2-13-232-207-92.ap-south-1.compute.amazonaws.com:5023/api/individual/"+individualId;
 
 
-        System.out.println("url---------------->>>>>>>>>>"+ url);
+        //System.out.println("url---------------->>>>>>>>>>"+ url);
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url,json,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
                         progress.dismiss();
-                        System.out.println("resp------------------->>>>>>>>>>>>>>>>"+result);
-                        System.out.println("response-------------------------------->>>>>>>>>>>>>>>"+response.toString());
+                        //System.out.println("resp------------------->>>>>>>>>>>>>>>>"+result);
+                        //System.out.println("response-------------------------------->>>>>>>>>>>>>>>"+response.toString());
 
                         try {
                             JSONObject serverResp = new JSONObject(response.toString());
                             String userName = serverResp.getString("name");
 
 
-                            System.out.println("name------------->>>>"+ userName);
+                            //System.out.println("name------------->>>>"+ userName);
 
                             View headerView = navigationView.getHeaderView(0);
                             TextView navUsername = (TextView) headerView.findViewById(R.id.drawerusername);
@@ -207,7 +215,7 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
                         } catch (JSONException e) {
                             // TODO Auto-generated catch block
                             progress.dismiss();
-                            System.out.println("cache------------------------------------------>>>>>>>>>>>>>>");
+                            //System.out.println("cache------------------------------------------>>>>>>>>>>>>>>");
                             e.printStackTrace();
                         }
                     }
@@ -217,11 +225,25 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
             public void onErrorResponse(VolleyError error) {
 
                 progress.dismiss();
-                System.out.println("Error getting response------------------------");
+                //System.out.println("Error getting response------------------------");
             }
         });
         requestQueue.add(jsonObjectRequest);
 
+    }
+    private void requestPermissionForCameraAndMicrophone(){
+        if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.CAMERA) ||
+                ActivityCompat.shouldShowRequestPermissionRationale(this,
+                        Manifest.permission.RECORD_AUDIO)) {
+            Toast.makeText(this,
+                    "permissions_needed",
+                    Toast.LENGTH_LONG).show();
+        } else {
+            ActivityCompat.requestPermissions(
+                    this,
+                    new String[]{Manifest.permission.CAMERA, Manifest.permission.RECORD_AUDIO},
+                    CAMERA_MIC_PERMISSION_REQUEST_CODE);
+        }
     }
 
 }

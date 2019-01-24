@@ -55,7 +55,7 @@ import java.util.ResourceBundle;
 
         Bundle extras = getIntent().getExtras();
         newString= extras.getString("docId");
-        System.out.println("doctor id ---------->>>>>>>>>>>" + newString);
+        //System.out.println("doctor id ---------->>>>>>>>>>>" + newString);
 //        addItemsOnSpinner2();
 
 //        SharedPreferences prefs = getSharedPreferences(MyPREFERENCES, MODE_PRIVATE);
@@ -88,7 +88,7 @@ import java.util.ResourceBundle;
          String url = getResources().getString(R.string.apiurl);
          url = url+"/doctor/"+newString;
 
-        System.out.println("url---------------->>>>>>>>>>"+ url);
+        //System.out.println("url---------------->>>>>>>>>>"+ url);
 
         final JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET,url,null,
                 new Response.Listener<JSONArray>(){
@@ -96,14 +96,14 @@ import java.util.ResourceBundle;
                     @Override
                     public void onResponse(JSONArray response) {
                         progress.dismiss();
-                        System.out.println("response------------------------------------"+ response.toString());
+                        //System.out.println("response------------------------------------"+ response.toString());
 
                         for(int i=0;i<response.length();i++){
                             try {
                                 JSONObject jsonObject=response.getJSONObject(i);
                              String docId = jsonObject.getString("doctorId");
 
-                                System.out.println("doctor id----------->>>>>>>"+docId);
+                                //System.out.println("doctor id----------->>>>>>>"+docId);
                                 String docName = jsonObject.getString("name");
                                 String docSpec = jsonObject.getString("speciality");
                                 String docAddr = jsonObject.getString("address");
@@ -129,7 +129,7 @@ import java.util.ResourceBundle;
             @Override
             public void onErrorResponse(VolleyError error) {
                 progress.dismiss();
-                System.out.println("error-----------------------------------"+ error);
+                //System.out.println("error-----------------------------------"+ error);
             }
         })
 
@@ -137,7 +137,7 @@ import java.util.ResourceBundle;
             /* Passing some request headers */
             @Override
             public Map<String,String> getHeaders() {
-                System.out.println("header----------------------------------------------------------------------<><><><><><><>");
+                //System.out.println("header----------------------------------------------------------------------<><><><><><><>");
                 HashMap<String, String> headers = new HashMap<String, String>();
 //                headers.put("Content-Type", "application/json");
                 headers.put("Accept","*/*");
@@ -149,7 +149,7 @@ import java.util.ResourceBundle;
         int socketTimeout = 30000;//30 seconds - change to what you want
         RetryPolicy policy = new DefaultRetryPolicy(socketTimeout, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
         jsonArrayRequest.setRetryPolicy(policy);
-        System.out.println("wating-----<><><><><><><><><><><><><><><><><><><><>><><><><>><");
+        //System.out.println("wating-----<><><><><><><><><><><><><><><><><><><><>><><><><>><");
         requestQueue.add(jsonArrayRequest);
     }
 }

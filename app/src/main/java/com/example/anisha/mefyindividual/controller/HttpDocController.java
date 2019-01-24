@@ -76,7 +76,7 @@ public class HttpDocController implements iHttpDocController {
                     @Override
                     public void onResponse(JSONObject response) {
 
-                        System.out.println("updateProfileData response: " + response);
+                        //System.out.println("updateProfileData response: " + response);
                         if (_iHttpResultHandler != null)
                             _iHttpResultHandler.onSuccess(docDataModel, APPConstant.GET_USER_UPDATED_INFO);
 
@@ -86,7 +86,7 @@ public class HttpDocController implements iHttpDocController {
             public void onErrorResponse(VolleyError error) {
                 if (_iHttpResultHandler != null)
                     _iHttpResultHandler.onError(error.getMessage(), APPConstant.GET_USER_UPDATED_INFO);
-                System.out.println("updateProfileData onErrorResponse: " + error.getMessage() + error);
+                //System.out.println("updateProfileData onErrorResponse: " + error.getMessage() + error);
 
             }
         }) {

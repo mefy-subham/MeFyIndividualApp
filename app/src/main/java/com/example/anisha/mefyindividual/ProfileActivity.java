@@ -101,7 +101,7 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
         setContentView(R.layout.activity_profile);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        System.out.println("profile-------------------->>>>>>>>>>>>>>>>>>>");
+        //System.out.println("profile-------------------->>>>>>>>>>>>>>>>>>>");
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -181,13 +181,13 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
         View headerView = navigationView.getHeaderView(0);
         TextView navUsername = (TextView) headerView.findViewById(R.id.drawerusername);
         userName = prefs.getString("username","");
-        System.out.println("username----------------->>>>>>>>>>>>>>>>>>>"+userName);
+        //System.out.println("username----------------->>>>>>>>>>>>>>>>>>>"+userName);
         navUsername.setText(userName);
         role = "individual";
-        System.out.println("id------------------------->>"+individualId);
-        System.out.println("userId-------------->>>>>>>>"+userid);
-        System.out.println("myUserId---------->>>>>>>>>>>>>>"+myUserId);
-        System.out.println("username------------>>>>"+username);
+        //System.out.println("id------------------------->>"+individualId);
+        //System.out.println("userId-------------->>>>>>>>"+userid);
+        //System.out.println("myUserId---------->>>>>>>>>>>>>>"+myUserId);
+        //System.out.println("username------------>>>>"+username);
         CheckConnectionStatus();
         Bundle extras = getIntent().getExtras();
 
@@ -352,7 +352,7 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
             }
         });
 
-        System.out.println("oncreate----------------------->>>>>>>>>>>>>>.");
+        //System.out.println("oncreate----------------------->>>>>>>>>>>>>>.");
     }
 
 
@@ -360,7 +360,7 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
     @Override
     protected void onResume() {
         super.onResume();
-        System.out.println("resume---------->>>>>>>>>>>");
+        //System.out.println("resume---------->>>>>>>>>>>");
     }
 
     // +++++++++++++++++ADDRESS VALIDATION+++++++++++++++++
@@ -370,7 +370,7 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
         boolean result = false;
 
         String addr = edtprofirst.getText().toString();
-        System.out.println("captured data----------->>>>>>" +addr);
+        //System.out.println("captured data----------->>>>>>" +addr);
         if(addr.isEmpty()){
             Toast.makeText(this,"please enter the " +
                     "address",Toast.LENGTH_SHORT ).show();
@@ -389,7 +389,7 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
     private boolean pinvalidate(){
         boolean pinres = false;
         String pin = edtprothird.getText().toString();
-        System.out.println("captured data----------->>>>>>" +pin);
+        //System.out.println("captured data----------->>>>>>" +pin);
 
         if(pin.isEmpty()){
             Toast.makeText(this,"please enter the " +
@@ -410,7 +410,7 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
         boolean result = false;
 
         String name = edtprofifth.getText().toString();
-        System.out.println("captured data----------->>>>>>" +name);
+        //System.out.println("captured data----------->>>>>>" +name);
         if(name.isEmpty()){
             Toast.makeText(this,"please enter the " +
                     "name",Toast.LENGTH_SHORT ).show();
@@ -484,8 +484,8 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
         boolean radio = false;
         int radiogender = marrigestatus.getCheckedRadioButtonId();
         marrige = (RadioButton) findViewById(radiogender);
-        System.out.println("captured data----------->>>>>>" +marrige);
-        System.out.println("captured data----------->>>>>>" +radiogender);
+        //System.out.println("captured data----------->>>>>>" +marrige);
+        //System.out.println("captured data----------->>>>>>" +radiogender);
 
         Toast.makeText(ProfileActivity.this,
                 marrige.getText().toString(), Toast.LENGTH_SHORT).show();
@@ -521,15 +521,15 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
          url = url+"/individual/"+individualId;
 
 
-        System.out.println("url---------------->>>>>>>>>>"+ url);
+        //System.out.println("url---------------->>>>>>>>>>"+ url);
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url,json,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
                         progress.dismiss();
-                        System.out.println("resp------------------->>>>>>>>>>>>>>>>"+result);
-                        System.out.println("response-------------------------------->>>>>>>>>>>>>>>"+response.toString());
+                        //System.out.println("resp------------------->>>>>>>>>>>>>>>>"+result);
+                        //System.out.println("response-------------------------------->>>>>>>>>>>>>>>"+response.toString());
 
                         try {
                             JSONObject serverResp = new JSONObject(response.toString());
@@ -540,9 +540,9 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
                                 String userPhn = serverResp.getString("phoneNumber");
 
 
-                                System.out.println("name------------->>>>"+serverResp.getString("name"));
-                                System.out.println("city-------------->>>"+serverResp.getString("city"));
-                                System.out.println("success result:------------------------->>>>>>>>>>>>> " + serverResp);
+                                //System.out.println("name------------->>>>"+serverResp.getString("name"));
+                                //System.out.println("city-------------->>>"+serverResp.getString("city"));
+                                //System.out.println("success result:------------------------->>>>>>>>>>>>> " + serverResp);
                                 nametxtview.setText(userName);
                                 birthtxtview.setText(userDob);
                                 citytxtview.setText(userCity);
@@ -556,7 +556,7 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
                                 String userAddr = serverResp.getString("address");
                                 String userPin = serverResp.getString("pin");
                                 String userMairriage = serverResp.getString("married");
-                                System.out.println("marriage---------->>>"+userMairriage);
+                                //System.out.println("marriage---------->>>"+userMairriage);
                                 streettxtview.setText(userAddr);
                                 pintxtview.setText(userPin);
                                 edtprofirst.setText(userAddr);
@@ -579,7 +579,7 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
                         } catch (JSONException e) {
 // TODO Auto-generated catch block
                             progress.dismiss();
-                            System.out.println("cache------------------------------------------>>>>>>>>>>>>>>");
+                            //System.out.println("cache------------------------------------------>>>>>>>>>>>>>>");
                             e.printStackTrace();
                         }
                     }
@@ -589,7 +589,7 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
             public void onErrorResponse(VolleyError error) {
 
                 progress.dismiss();
-                System.out.println("Error getting response------------------------");
+                //System.out.println("Error getting response------------------------");
             }
         });
         requestQueue.add(jsonObjectRequest);
@@ -621,16 +621,16 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
          url = url+"/individual/profile/"+myUserId;
 
 
-        System.out.println("url---------------->>>>>>>>>>"+ url);
+        //System.out.println("url---------------->>>>>>>>>>"+ url);
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.PUT, url,json,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
 
-                        System.out.println("resp------------------->>>>>>>>>>>>>>>>"+result);
+                        //System.out.println("resp------------------->>>>>>>>>>>>>>>>"+result);
                         progress.dismiss();
-                        System.out.println("response-------------------------------->>>>>>>>>>>>>>>"+response.toString());
+                        //System.out.println("response-------------------------------->>>>>>>>>>>>>>>"+response.toString());
                         mainprofile.setVisibility(View.VISIBLE);
                         mainfirstprofile.setVisibility(View.GONE);
                         CheckConnectionStatus();
@@ -641,7 +641,7 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
             public void onErrorResponse(VolleyError error) {
 
                 progress.dismiss();
-                System.out.println("Error getting response------------------------"+error);
+                //System.out.println("Error getting response------------------------"+error);
             }
         }) {
 
@@ -734,9 +734,9 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
                     String path = saveImage(bitmap);
                     Toast.makeText(ProfileActivity.this, "Image Saved!", Toast.LENGTH_SHORT).show();
                     imageviewone.setImageBitmap(bitmap);
-                    System.out.println("path------------->>>"+path.toString());
-                    System.out.println("imagepath-------->>>>"+imageviewone);
-                    System.out.println("bitmap------->>>>"+bitmap);
+                    //System.out.println("path------------->>>"+path.toString());
+                    //System.out.println("imagepath-------->>>>"+imageviewone);
+                    //System.out.println("bitmap------->>>>"+bitmap);
 
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -774,7 +774,7 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
             fo.close();
             Log.d("TAG", "File Saved::--->" + f.getAbsolutePath());
 
-            System.out.println("getPath--------------->>>>>>>>>>>"+f);
+            //System.out.println("getPath--------------->>>>>>>>>>>"+f);
             return f.getAbsolutePath();
         } catch (IOException e1) {
             e1.printStackTrace();

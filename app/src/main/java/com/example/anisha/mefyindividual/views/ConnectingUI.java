@@ -32,10 +32,10 @@ public class ConnectingUI extends AppCompatActivity {
         status = i.getExtras().getString("status");
         fcm = i.getExtras().getString("fcm");
         u_name = i.getExtras().getString("u_name");
-        System.out.println("ConnectingUI | room----------->>>>>>>" + room_name);
-        System.out.println("ConnectingUI | status----------->>>>>>>" + status);
-        System.out.println("ConnectingUI | fcm----------->>>>>>>" + fcm);
-        System.out.println("ConnectingUI | u_name----------->>>>>>>" + u_name);
+        //System.out.println("ConnectingUI | room----------->>>>>>>" + room_name);
+        //System.out.println("ConnectingUI | status----------->>>>>>>" + status);
+        //System.out.println("ConnectingUI | fcm----------->>>>>>>" + fcm);
+        //System.out.println("ConnectingUI | u_name----------->>>>>>>" + u_name);
         _decline=(Button)findViewById(R.id.btn_decline);
         _decline.setOnClickListener(new View.OnClickListener() {
             @Override

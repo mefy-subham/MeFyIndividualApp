@@ -45,7 +45,7 @@ public class FamilyActivity extends AppCompatActivity
         setContentView(R.layout.activity_family);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        System.out.println("family-------------------->>>>>>>>>>>>>>>>>>>");
+        //System.out.println("family-------------------->>>>>>>>>>>>>>>>>>>");
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);

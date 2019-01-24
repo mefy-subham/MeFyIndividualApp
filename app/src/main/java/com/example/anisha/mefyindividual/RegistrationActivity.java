@@ -122,7 +122,7 @@ public class RegistrationActivity extends AppCompatActivity {
         layoutseven = (LinearLayout)findViewById(id.layoutseven);
         layouteight = (LinearLayout)findViewById(id.layouteight);
 
-        System.out.println("entered 3rd activity---------->>>>>>>>>>>>>>>>");
+        //System.out.println("entered 3rd activity---------->>>>>>>>>>>>>>>>");
 
 
        deviceid = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
@@ -135,7 +135,7 @@ public class RegistrationActivity extends AppCompatActivity {
                 if (validates());
                 String getName = textfirst.getText().toString();
                 text4.setText(getName);
-                System.out.println("1st data--------->>>>>>" +textfirst);
+                //System.out.println("1st data--------->>>>>>" +textfirst);
             }
         });
 
@@ -147,7 +147,7 @@ public class RegistrationActivity extends AppCompatActivity {
                 if(radiovalidate());
                 String getNames = ((EditText) findViewById(R.id.textfirst)).getText().toString();
                 text9.setText(getNames);
-                System.out.println("2nd data--------->>>>>>" +radiosex);
+                //System.out.println("2nd data--------->>>>>>" +radiosex);
 
             }
         });
@@ -157,11 +157,11 @@ public class RegistrationActivity extends AppCompatActivity {
         thirdbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                System.out.println("2nd data--------->>>>>>" );
+                //System.out.println("2nd data--------->>>>>>" );
                 if(datevalidate());
                 String getNames = ((EditText) findViewById(R.id.textfirst)).getText().toString();
                 text11.setText(getNames);
-                System.out.println("3rd data--------->>>>>>" +textsecond);
+                //System.out.println("3rd data--------->>>>>>" +textsecond);
             }
         });
 
@@ -201,7 +201,7 @@ public class RegistrationActivity extends AppCompatActivity {
                 if(cityvalidate());
                 String getNames = ((EditText) findViewById(R.id.textfirst)).getText().toString();
                 text11.setText(getNames);
-                System.out.println("4th data--------->>>>>>" +textthird);
+                //System.out.println("4th data--------->>>>>>" +textthird);
              }
         });
 
@@ -225,7 +225,7 @@ public class RegistrationActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
         otpres = true;
-                System.out.println("button clicked----------------->>>>>>>>>>>>>>>"+otpres);
+                //System.out.println("button clicked----------------->>>>>>>>>>>>>>>"+otpres);
                 CheckConnectionStatus();
                 if (otpres == true){
                     layoutsix.setVisibility(View.GONE);
@@ -269,7 +269,7 @@ public class RegistrationActivity extends AppCompatActivity {
         boolean result = false;
 
         String name = textfirst.getText().toString();
-        System.out.println("captured data----------->>>>>>" +name);
+        //System.out.println("captured data----------->>>>>>" +name);
         if(name.isEmpty()){
             Toast.makeText(this,"please enter the " +
                     "name",Toast.LENGTH_SHORT ).show();
@@ -358,7 +358,7 @@ public class RegistrationActivity extends AppCompatActivity {
             if (otpres == false){
                 json.accumulate("phoneNumber", textfourth.getText().toString());
                 json.accumulate("role","individual");
-                System.out.println(json+"otp is false---------------->>>>>>>>>>>>>>");
+                //System.out.println(json+"otp is false---------------->>>>>>>>>>>>>>");
             }
             else if (otpres == true){
                 json.accumulate("name",textfirst.getText().toString());
@@ -369,7 +369,7 @@ public class RegistrationActivity extends AppCompatActivity {
                 json.accumulate("otp",textfifth.getText().toString());
                 json.accumulate("deviceId",deviceid);
                 json.accumulate("role","individual");
-                System.out.println(json+"otp is true---------------->>>>>>>>>>>>>>");
+                //System.out.println(json+"otp is true---------------->>>>>>>>>>>>>>");
             }
         } catch (JSONException e) {
             e.printStackTrace();
@@ -384,7 +384,7 @@ public class RegistrationActivity extends AppCompatActivity {
             url = "http://ec2-13-232-207-92.ap-south-1.compute.amazonaws.com:5023/api/User/registration";
         }
 
-        System.out.println("url---------------->>>>>>>>>>"+ url);
+        //System.out.println("url---------------->>>>>>>>>>"+ url);
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url,json,
                 new Response.Listener<JSONObject>() {
@@ -392,13 +392,13 @@ public class RegistrationActivity extends AppCompatActivity {
                     public void onResponse(JSONObject response) {
 
                         progress.dismiss();
-                        System.out.println("response-------------------------------->>>>>>>>>>>>>>>"+response.toString());
+                        //System.out.println("response-------------------------------->>>>>>>>>>>>>>>"+response.toString());
                         try{
                             JSONObject obj = response.getJSONObject("result");
                             if (otpres == false){
 //                                JSONObject obj = response.getJSONObject("result");
                                 String msg = obj.getString("message");
-                                System.out.println("msg--------------->>>"+msg.toString());
+                                //System.out.println("msg--------------->>>"+msg.toString());
                                 if (msg.equals("OTP sent to registered number")){
                                     layoutfive.setVisibility(View.GONE);
                                     layoutsix.setVisibility(View.VISIBLE);
@@ -419,12 +419,12 @@ public class RegistrationActivity extends AppCompatActivity {
                             String individualId = userObject.getString("individualId");
                             String userId = userObject.getString("userId");
                             String myUserId = userId.substring(userId.lastIndexOf("#")+1);
-                            System.out.println("seperated--------->>>"+myUserId);
-                            System.out.println("username----------------"+username);
-                            System.out.println("individualId-----------------"+individualId);
-                            System.out.println("userId------------->>>>>>>>>>>"+userId);
+                            //System.out.println("seperated--------->>>"+myUserId);
+                            //System.out.println("username----------------"+username);
+                            //System.out.println("individualId-----------------"+individualId);
+                            //System.out.println("userId------------->>>>>>>>>>>"+userId);
                                 String msg = obj.getString("message");
-                                System.out.println("msg--------------->>>"+msg.toString());
+                                //System.out.println("msg--------------->>>"+msg.toString());
                             if ( msg.equals("Individual loggedIn successfully")){
                                 layoutsix.setVisibility(View.GONE);
                                 layoutseven.setVisibility(View.VISIBLE);
@@ -436,7 +436,7 @@ public class RegistrationActivity extends AppCompatActivity {
                             editor.putString("userId",userObject.getString("userId"));
                             editor.putString("myUserId",userId.substring(userId.lastIndexOf("#")+1));
                             editor.putString("username",userObject.getString("name"));
-                            System.out.println("editor------------>>>>>>>>>>"+userObject.getString("individualId"));
+                            //System.out.println("editor------------>>>>>>>>>>"+userObject.getString("individualId"));
                             editor.commit();
                             }
 
@@ -452,7 +452,7 @@ public class RegistrationActivity extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
 
                 progress.dismiss();
-                System.out.println("Error getting response------------------------");
+                //System.out.println("Error getting response------------------------");
             }
         });
 

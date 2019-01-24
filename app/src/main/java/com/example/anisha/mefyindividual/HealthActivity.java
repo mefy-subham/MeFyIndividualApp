@@ -97,7 +97,7 @@ public class HealthActivity extends AppCompatActivity
         setContentView(R.layout.activity_health);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        System.out.println("health-------------------->>>>>>>>>>>>>>>>>>>");
+        //System.out.println("health-------------------->>>>>>>>>>>>>>>>>>>");
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -205,10 +205,10 @@ public class HealthActivity extends AppCompatActivity
         myUserId = prefs.getString("myUserId","");
         username = prefs.getString("username","");
         role = "individual";
-        System.out.println("id------------------------->>"+individualId);
-        System.out.println("userId-------------->>>>>>>>"+userid);
-        System.out.println("myUserId---------->>>>>>>>>>>>>>"+myUserId);
-        System.out.println("username------------>>>>"+username);
+        //System.out.println("id------------------------->>"+individualId);
+        //System.out.println("userId-------------->>>>>>>>"+userid);
+        //System.out.println("myUserId---------->>>>>>>>>>>>>>"+myUserId);
+        //System.out.println("username------------>>>>"+username);
 
 
         lst = (ListView)findViewById(R.id.allergylist);
@@ -331,7 +331,7 @@ public class HealthActivity extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 healthfirsttoggle.isChecked();
-                System.out.println("allergyToggle"+healthfirsttoggle.isChecked());
+                //System.out.println("allergyToggle"+healthfirsttoggle.isChecked());
                 allergyToggleChecked();
             }
         });
@@ -358,21 +358,21 @@ public class HealthActivity extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-        System.out.println();
+        //System.out.println();
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
-            System.out.println("first-------------------------->>>>>");
+            //System.out.println("first-------------------------->>>>>");
         }
 
             else if (allergyviewbtn == true){
-            System.out.println(" from allergy list view------------>>>>>");
+            //System.out.println(" from allergy list view------------>>>>>");
             allergy.setVisibility(View.VISIBLE);
             allergylistview.setVisibility(View.GONE);
         }
             else {
                 super.onBackPressed();
-            System.out.println("sec---------------------------------->>>>>");
+            //System.out.println("sec---------------------------------->>>>>");
             }
         }
 
@@ -391,24 +391,24 @@ public void allergyToggleChecked(){
      url = url+"/individual/"+individualId;
 
 
-    System.out.println("url---------------->>>>>>>>>>"+ url);
+    //System.out.println("url---------------->>>>>>>>>>"+ url);
 
     JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url,json,
             new Response.Listener<JSONObject>() {
                 @Override
                 public void onResponse(JSONObject response) {
                     progress.dismiss();
-                    System.out.println("resp------------------->>>>>>>>>>>>>>>>"+result);
-                    System.out.println("response-------------------------------->>>>>>>>>>>>>>>"+response.toString());
+                    //System.out.println("resp------------------->>>>>>>>>>>>>>>>"+result);
+                    //System.out.println("response-------------------------------->>>>>>>>>>>>>>>"+response.toString());
                     try {
                         JSONObject serverResp = new JSONObject(response.toString());
                         String userHealth = serverResp.getString("HealthRecord");
-                        System.out.println("healthrecord--------->>>>>>"+userHealth);
+                        //System.out.println("healthrecord--------->>>>>>"+userHealth);
                         progress.dismiss();
                     } catch (JSONException e) {
 // TODO Auto-generated catch block
                         progress.dismiss();
-                        System.out.println("cache------------------------------------------>>>>>>>>>>>>>>");
+                        //System.out.println("cache------------------------------------------>>>>>>>>>>>>>>");
                         e.printStackTrace();
                     }
 
@@ -419,7 +419,7 @@ public void allergyToggleChecked(){
         public void onErrorResponse(VolleyError error) {
 
             progress.dismiss();
-            System.out.println("Error getting response------------------------");
+            //System.out.println("Error getting response------------------------");
         }
     });
     requestQueue.add(jsonObjectRequest);
@@ -441,20 +441,20 @@ public void allergyToggleChecked(){
         url = url+"/individual/allergies";
 
 
-       System.out.println("url---------------->>>>>>>>>>"+ url);
+       //System.out.println("url---------------->>>>>>>>>>"+ url);
 
        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url,null,
                new Response.Listener<JSONObject>() {
                    @Override
                    public void onResponse(JSONObject response) {
                        progress.dismiss();
-                       System.out.println("resp------------------->>>>>>>>>>>>>>>>"+result);
-                       System.out.println("response-------------------------------->>>>>>>>>>>>>>>"+response.toString());
+                       //System.out.println("resp------------------->>>>>>>>>>>>>>>>"+result);
+                       //System.out.println("response-------------------------------->>>>>>>>>>>>>>>"+response.toString());
                        try {
                            JSONObject serverResp = new JSONObject(response.toString());
                            JSONArray obj = serverResp.getJSONArray("result");
                            String[] sasasa = {"Medicine","Food","Dust","Skin","Insect Sting","Cockraches","Dog","Cat","Eye","Hey Fever","Latex","Mold","Sinusitis"};
-                           System.out.println("sasaa------------>>>>"+sasasa.toString());
+                           //System.out.println("sasaa------------>>>>"+sasasa.toString());
                            String[] allergywith ={"Curd", "Egg", "Milk", "Wheat", "Corn",
                                    "Peanut", "Soy", "Garlic", "Chilli", "Fruit"};
                            String[] disease = {"Respiratory","Cardiovascular","Disabilities",
@@ -474,18 +474,18 @@ public void allergyToggleChecked(){
 //                           for (int i=1;i<response.length();i++){
 //                               JSONObject jsonObject=response.getJSONObject(String.valueOf(i));
 //                               String allergyname = jsonObject.getString("result");
-//                               System.out.println("allergyname---------->>>>"+allergyname);
+//                               //System.out.println("allergyname---------->>>>"+allergyname);
 //                               responselist.add(allergyname);
 //                           }
 
 //                           JSONArray obj = response.getJSONArray("result");
 //                           JSONArray allergytype = obj;
 
-//                           System.out.println("allergy-------->>>>>"+obj);
+//                           //System.out.println("allergy-------->>>>>"+obj);
                            ArrayAdapter<String> adapter = new ArrayAdapter<String>(HealthActivity.this,select_dialog_item,sasasa);
                            AutoCompleteTextView allergyfirstedit = (AutoCompleteTextView)findViewById(R.id.allergyfirstedit);
                            allergyfirstedit.setAdapter(adapter);
-                           System.out.println("adapter------------>>>>"+adapter);
+                           //System.out.println("adapter------------>>>>"+adapter);
                            allergyfirstedit.setThreshold(1);
 
                            ArrayAdapter<String> adapterwith = new ArrayAdapter<String>(HealthActivity.this,select_dialog_item,allergywith);
@@ -502,7 +502,7 @@ public void allergyToggleChecked(){
                        } catch (JSONException e) {
 // TODO Auto-generated catch block
                            progress.dismiss();
-                           System.out.println("cache------------------------------------------>>>>>>>>>>>>>>");
+                           //System.out.println("cache------------------------------------------>>>>>>>>>>>>>>");
                            e.printStackTrace();
                        }
 
@@ -513,7 +513,7 @@ public void allergyToggleChecked(){
            public void onErrorResponse(VolleyError error) {
 
                progress.dismiss();
-               System.out.println("Error getting response------------------------");
+               //System.out.println("Error getting response------------------------");
            }
        });
        requestQueue.add(jsonObjectRequest);
@@ -536,7 +536,7 @@ public void allergyToggleChecked(){
             json.accumulate("allergyType",allergyfirstedit.getText().toString());
             json.accumulate("allergyWith",allergysecedit.getText().toString());
             json.accumulate("allergySince",allergythirdedit.getText().toString());
-            System.out.println("json--------------->>>>"+json);
+            //System.out.println("json--------------->>>>"+json);
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -546,22 +546,22 @@ public void allergyToggleChecked(){
          url = url+"/allergies/addallergies";
 
 
-        System.out.println("url---------------->>>>>>>>>>"+ url);
+        //System.out.println("url---------------->>>>>>>>>>"+ url);
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url,json,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
                         progress.dismiss();
-                        System.out.println("resp------------------->>>>>>>>>>>>>>>>"+result);
-                        System.out.println("response-------------------------------->>>>>>>>>>>>>>>"+response.toString());
+                        //System.out.println("resp------------------->>>>>>>>>>>>>>>>"+result);
+                        //System.out.println("response-------------------------------->>>>>>>>>>>>>>>"+response.toString());
                         try {
                            JSONObject serverResp = new JSONObject(response.toString());
 
                         } catch (JSONException e) {
 // TODO Auto-generated catch block
                             progress.dismiss();
-                            System.out.println("cache------------------------------------------>>>>>>>>>>>>>>");
+                            //System.out.println("cache------------------------------------------>>>>>>>>>>>>>>");
                             e.printStackTrace();
                             Toast toast = Toast.makeText(getApplicationContext(),
                                     "Allergy details saved successfully.",
@@ -576,7 +576,7 @@ public void allergyToggleChecked(){
             public void onErrorResponse(VolleyError error) {
 
                 progress.dismiss();
-                System.out.println("Error getting response------------------------");
+                //System.out.println("Error getting response------------------------");
             }
         });
         requestQueue.add(jsonObjectRequest);
@@ -585,7 +585,7 @@ public void allergyToggleChecked(){
 
 
 public void healthdialog(){
-    System.out.println("method called----------------->>>>>>>>>>>>>>>>>>>>.");
+    //System.out.println("method called----------------->>>>>>>>>>>>>>>>>>>>.");
     AlertDialog.Builder builder = new AlertDialog.Builder(HealthActivity.this);
 
     builder.setCancelable(true);
@@ -611,7 +611,7 @@ public void healthdialog(){
             allergyfirstedit.setText("");
             allergysecedit.setText("");
             allergythirdedit.setText("");
-            System.out.println("ok button clicked--------------------->>>>>>>>>");
+            //System.out.println("ok button clicked--------------------->>>>>>>>>");
         }
     });
     builder.show();
@@ -632,15 +632,15 @@ public void healthdialog(){
          url = url+"/individual/allergy?individualId="+individualId;
 
 
-        System.out.println("url---------------->>>>>>>>>>"+ url);
+        //System.out.println("url---------------->>>>>>>>>>"+ url);
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url,null,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
                         progress.dismiss();
-                        System.out.println("resp------------------->>>>>>>>>>>>>>>>"+result);
-                        System.out.println("response-------------------------------->>>>>>>>>>>>>>>"+response.toString());
+                        //System.out.println("resp------------------->>>>>>>>>>>>>>>>"+result);
+                        //System.out.println("response-------------------------------->>>>>>>>>>>>>>>"+response.toString());
 //                        for(int i=0;i<response.length();i++){
 //                            try {
 //                                JSONObject jsonObject=response.getJSONObject(i);
@@ -663,14 +663,14 @@ public void healthdialog(){
 
                             }
                             adapter.notifyDataSetChanged();
-                            System.out.println("objallr--------->>>>>>"+objallr);
+                            //System.out.println("objallr--------->>>>>>"+objallr);
 //                            items.add(objallr.toString());
 
 //                            items.add(objallr.getString("allergySince")+"\n"+objallr.getString("allergyType")+"\n"+objallr.getString("allergyWith"));
                         } catch (JSONException e) {
 // TODO Auto-generated catch block
                             progress.dismiss();
-                            System.out.println("cache------------------------------------------>>>>>>>>>>>>>>");
+                            //System.out.println("cache------------------------------------------>>>>>>>>>>>>>>");
                             e.printStackTrace();
                         }
 
@@ -681,7 +681,7 @@ public void healthdialog(){
             public void onErrorResponse(VolleyError error) {
 
                 progress.dismiss();
-                System.out.println("Error getting response------------------------"+error);
+                //System.out.println("Error getting response------------------------"+error);
             }
         });
         requestQueue.add(jsonObjectRequest);
@@ -703,7 +703,7 @@ public void healthdialog(){
             json.accumulate("surgery",surgeryfirstedit.getText().toString());
             json.accumulate("dateOfDiagnosis",surgerysecedit.getText().toString());
             json.accumulate("allergySince",allergythirdedit.getText().toString());
-            System.out.println("json--------------->>>>"+json);
+            //System.out.println("json--------------->>>>"+json);
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -713,22 +713,22 @@ public void healthdialog(){
          url = url+"/surgical/addsurgical";
 
 
-        System.out.println("url---------------->>>>>>>>>>"+ url);
+        //System.out.println("url---------------->>>>>>>>>>"+ url);
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url,json,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
                         progress.dismiss();
-                        System.out.println("resp------------------->>>>>>>>>>>>>>>>"+result);
-                        System.out.println("response-------------------------------->>>>>>>>>>>>>>>"+response.toString());
+                        //System.out.println("resp------------------->>>>>>>>>>>>>>>>"+result);
+                        //System.out.println("response-------------------------------->>>>>>>>>>>>>>>"+response.toString());
                         try {
                             JSONObject serverResp = new JSONObject(response.toString());
 
                         } catch (JSONException e) {
 // TODO Auto-generated catch block
                             progress.dismiss();
-                            System.out.println("cache------------------------------------------>>>>>>>>>>>>>>");
+                            //System.out.println("cache------------------------------------------>>>>>>>>>>>>>>");
                             e.printStackTrace();
                             Toast toast = Toast.makeText(getApplicationContext(),
                                     "Surgery details saved successfully.",
@@ -743,7 +743,7 @@ public void healthdialog(){
             public void onErrorResponse(VolleyError error) {
 
                 progress.dismiss();
-                System.out.println("Error getting response------------------------");
+                //System.out.println("Error getting response------------------------");
             }
         });
         requestQueue.add(jsonObjectRequest);
@@ -763,15 +763,15 @@ public void healthdialog(){
          url = url+"/individual/surgery?individualId="+individualId;
 
 
-        System.out.println("url---------------->>>>>>>>>>"+ url);
+        //System.out.println("url---------------->>>>>>>>>>"+ url);
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url,null,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
                         progress.dismiss();
-                        System.out.println("resp------------------->>>>>>>>>>>>>>>>"+result);
-                        System.out.println("response-------------------------------->>>>>>>>>>>>>>>"+response.toString());
+                        //System.out.println("resp------------------->>>>>>>>>>>>>>>>"+result);
+                        //System.out.println("response-------------------------------->>>>>>>>>>>>>>>"+response.toString());
 //                        for(int i=0;i<response.length();i++){
 //                            try {
 //                                JSONObject jsonObject=response.getJSONObject(i);
@@ -794,14 +794,14 @@ public void healthdialog(){
 
                             }
                             adapter.notifyDataSetChanged();
-                            System.out.println("objallr--------->>>>>>"+objallr);
+                            //System.out.println("objallr--------->>>>>>"+objallr);
 //                            items.add(objallr.toString());
 
 //                            items.add(objallr.getString("allergySince")+"\n"+objallr.getString("allergyType")+"\n"+objallr.getString("allergyWith"));
                         } catch (JSONException e) {
 // TODO Auto-generated catch block
                             progress.dismiss();
-                            System.out.println("cache------------------------------------------>>>>>>>>>>>>>>");
+                            //System.out.println("cache------------------------------------------>>>>>>>>>>>>>>");
                             e.printStackTrace();
                         }
 
@@ -812,7 +812,7 @@ public void healthdialog(){
             public void onErrorResponse(VolleyError error) {
 
                 progress.dismiss();
-                System.out.println("Error getting response------------------------"+error);
+                //System.out.println("Error getting response------------------------"+error);
             }
         });
         requestQueue.add(jsonObjectRequest);

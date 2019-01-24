@@ -70,8 +70,8 @@ public class SliderAdaptor extends PagerAdapter {
         slideHeading.setText(slide_headings[position]);
         slideDescription.setText(slide_descs[position]);
         container.addView(view);
-        System.out.println("slider---------------------->>>>>");
-        System.out.println("view---------------->>>>>>>>>>>>>>");
+        //System.out.println("slider---------------------->>>>>");
+        //System.out.println("view---------------->>>>>>>>>>>>>>");
         return view;
     };
 

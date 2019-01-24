@@ -90,7 +90,7 @@ public class AppointmentActivity extends AppCompatActivity
     private String twilio_token;
     private RoomModel roomModelGlobal;
     private String toThisDoc;
-    private static final int CAMERA_MIC_PERMISSION_REQUEST_CODE = 1;
+
 
     //    public Integer[] appoint_img = {
 //        R.drawable.mefy_logo, R.drawable.mefy_logo
@@ -102,7 +102,7 @@ public class AppointmentActivity extends AppCompatActivity
         setContentView(R.layout.activity_appointment);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        System.out.println("appointment-------------------->>>>>>>>>>>>>>>>>>>");
+        //System.out.println("appointment-------------------->>>>>>>>>>>>>>>>>>>");
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -125,7 +125,7 @@ public class AppointmentActivity extends AppCompatActivity
 //        book = (Button)findViewById(R.id.book);
         appointfirstlayout = (LinearLayout) findViewById(R.id.appointfirstlayout);
         appointseclayout = (LinearLayout) findViewById(R.id.appointseclayout);
-        requestPermissionForCameraAndMicrophone();
+
 
         appointfirstbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -138,8 +138,8 @@ public class AppointmentActivity extends AppCompatActivity
 
 
         appointgetlist = (ListView) findViewById(R.id.appointgetlist);
-        System.out.println("onCreate | ListView | data :"+data.size());
-        System.out.println("onCreate | ListView | data :"+datafortoken.size());
+        //System.out.println("onCreate | ListView | data :"+data.size());
+        //System.out.println("onCreate | ListView | data :"+datafortoken.size());
         appointgetlist.setAdapter(new MyListAdaper(AppointmentActivity.this, R.layout.appointlist, data));
 
         appointgetlist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -161,7 +161,7 @@ public class AppointmentActivity extends AppCompatActivity
 //        appointmentlist.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
-//                System.out.println("appointment----------------------->>>>>>>>>>>>>>>>>>>>");
+//                //System.out.println("appointment----------------------->>>>>>>>>>>>>>>>>>>>");
 //            }
 //        });
 //    }
@@ -179,7 +179,7 @@ public class AppointmentActivity extends AppCompatActivity
         String url = getResources().getString(R.string.apiurl);
         url = url + "/doctor";
 
-        System.out.println("url---------------->>>>>>>>>>" + url);
+        //System.out.println("url---------------->>>>>>>>>>" + url);
 
         final JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONArray>() {
@@ -187,7 +187,7 @@ public class AppointmentActivity extends AppCompatActivity
                     @Override
                     public void onResponse(JSONArray response) {
                         progress.dismiss();
-                        System.out.println("response------------------------------------" + response.toString());
+                        //System.out.println("response------------------------------------" + response.toString());
 
                         for (int i = 0; i < response.length(); i++) {
                             try {
@@ -197,8 +197,8 @@ public class AppointmentActivity extends AppCompatActivity
 
                                 data.add(jsonObject.getString("name") + "\n" + jsonObject.getString("speciality") + "\n" + jsonObject.getString("address") + "\n");
 
-                                System.out.println("doctor id----------->>>>>>>" + docId);
-                                System.out.println("Mobile Token----------->>>>>>>" + mobileToken);
+                                //System.out.println("doctor id----------->>>>>>>" + docId);
+                                //System.out.println("Mobile Token----------->>>>>>>" + mobileToken);
                                 if(!(jsonObject.getString("mobiletoken").isEmpty()))
                                 {
                                     mobileToken = jsonObject.getString("mobiletoken");
@@ -221,7 +221,7 @@ public class AppointmentActivity extends AppCompatActivity
             @Override
             public void onErrorResponse(VolleyError error) {
                 progress.dismiss();
-                System.out.println("error-----------------------------------" + error);
+                //System.out.println("error-----------------------------------" + error);
             }
         })
 
@@ -229,7 +229,7 @@ public class AppointmentActivity extends AppCompatActivity
             /* Passing some request headers */
             @Override
             public Map<String, String> getHeaders() {
-                System.out.println("header----------------------------------------------------------------------<><><><><><><>");
+                //System.out.println("header----------------------------------------------------------------------<><><><><><><>");
                 HashMap<String, String> headers = new HashMap<String, String>();
 //                headers.put("Content-Type", "application/json");
                 headers.put("Accept", "*/*");
@@ -241,7 +241,7 @@ public class AppointmentActivity extends AppCompatActivity
         int socketTimeout = 30000;//30 seconds - change to what you want
         RetryPolicy policy = new DefaultRetryPolicy(socketTimeout, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
         jsonArrayRequest.setRetryPolicy(policy);
-        System.out.println("wating-----<><><><><><><><><><><><><><><><><><><><>><><><><>><");
+        //System.out.println("wating-----<><><><><><><><><><><><><><><><><><><><>><><><><>><");
         requestQueue.add(jsonArrayRequest);
     }
 
@@ -286,7 +286,7 @@ public class AppointmentActivity extends AppCompatActivity
                     textdocid = docId.toString();
 
 
-//                    System.out.println("id in button------------------>>>>>>>>>>>>"+ iddd);
+//                    //System.out.println("id in button------------------>>>>>>>>>>>>"+ iddd);
                     Intent intent = new Intent(AppointmentActivity.this, DoctorList.class);
 //                    intent.putExtra("position",textpos.getText().toString());
                     intent.putExtra("docId", textdocid);
@@ -303,7 +303,7 @@ public class AppointmentActivity extends AppCompatActivity
                     //Toast.makeText(getContext(), "Button was clicked for list item " + position +":" +datafortoken.get(position), Toast.LENGTH_SHORT).show();
                     //System.out.println("AppointmentActivity | getView | mainViewholder.vCall.setOnClickListener | datafortoken :" + datafortoken.get(position));
                         toThisDoc = datafortoken.get(position);
-                        System.out.println("Your Token : " + toThisDoc);
+                        //System.out.println("Your Token : " + toThisDoc);
                         userName="Ind";
                         progress = new ProgressDialog(AppointmentActivity.this);
                         progress.setMessage("Connecting doctor...");
@@ -315,7 +315,7 @@ public class AppointmentActivity extends AppCompatActivity
                         HttpHandler httpHandler = HttpHandler.getInstance();
                         ServerResultHandler serverResultHandler = new ServerResultHandler(AppointmentActivity.this);
 
-                        System.out.println("AppointmentActivity | mainViewholder.vCall.setOnClickListener :"+userName);
+                        //System.out.println("AppointmentActivity | mainViewholder.vCall.setOnClickListener :"+userName);
                         //Room Creation API
                         httpHandler.set_resultHandler(serverResultHandler);
                         httpHandler.roomCreation(roomModelGlobal,AppointmentActivity.this,APPConstant.ROOM_CREATION_OPERATION);
@@ -430,7 +430,7 @@ public class AppointmentActivity extends AppCompatActivity
         public void onSuccess(Object response, String operation_flag) {
 
             if (operation_flag.equalsIgnoreCase(APPConstant.SEND_FCM_NOTIFICATION_OPERATION)) {
-                System.out.println("AppointmentActivity | ServerResultHandler | onSuccess | SEND_FCM_NOTIFICATION_OPERATION");
+                //System.out.println("AppointmentActivity | ServerResultHandler | onSuccess | SEND_FCM_NOTIFICATION_OPERATION");
                 //HttpHandler httpHandler = HttpHandler.getInstance();
                 //ServerResultHandler serverResultHandler = new ServerResultHandler(AppointmentActivity.this);
 
@@ -449,10 +449,10 @@ public class AppointmentActivity extends AppCompatActivity
 
         @Override
         public void onRoom(RoomModel roomModel, String operation_flag) {
-            System.out.println("AppointmentActivity | ServerResultHandler | onSuccess | ROOM_CREATION_OPERATION");
+            //System.out.println("AppointmentActivity | ServerResultHandler | onSuccess | ROOM_CREATION_OPERATION");
 
             roomModelGlobal = roomModel;
-            System.out.println("AppointmentActivity | ServerResultHandler | onRoom | ROOM_CREATION_OPERATION | roomModel");
+            //System.out.println("AppointmentActivity | ServerResultHandler | onRoom | ROOM_CREATION_OPERATION | roomModel");
             HttpHandler httpHandler = HttpHandler.getInstance();
             ServerResultHandler serverResultHandler = new ServerResultHandler(_context);
             //Twilio Token Creation API
@@ -478,7 +478,7 @@ public class AppointmentActivity extends AppCompatActivity
                 callModel.setRecording_url(roomModelGlobal.getRecordingURL());
                 //FCM Send API
                 httpHandler.set_resultHandler(serverResultHandler);
-                System.out.println("AppointmentActivity | ServerResultHandler | onSuccess | placeCall ");
+                //System.out.println("AppointmentActivity | ServerResultHandler | onSuccess | placeCall ");
                 httpHandler.placeCall(callModel, _context, APPConstant.SEND_FCM_NOTIFICATION_OPERATION);
 
 
@@ -514,20 +514,6 @@ public class AppointmentActivity extends AppCompatActivity
         @Override
         public void inProgress(Object response, String operation_flag) {
 
-        }
-    }
-    private void requestPermissionForCameraAndMicrophone(){
-        if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.CAMERA) ||
-                ActivityCompat.shouldShowRequestPermissionRationale(this,
-                        Manifest.permission.RECORD_AUDIO)) {
-            Toast.makeText(this,
-                    "permissions_needed",
-                    Toast.LENGTH_LONG).show();
-        } else {
-            ActivityCompat.requestPermissions(
-                    this,
-                    new String[]{Manifest.permission.CAMERA, Manifest.permission.RECORD_AUDIO},
-                    CAMERA_MIC_PERMISSION_REQUEST_CODE);
         }
     }
 

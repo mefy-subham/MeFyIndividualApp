@@ -23,7 +23,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
     @Override
     public void onCreate() {
-        System.out.println("Service Has been Created");
+        //System.out.println("Service Has been Created");
         super.onCreate();
     }
     /**
@@ -34,29 +34,29 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     // [START receive_message]
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
-        System.out.println("MessageReceived:" +remoteMessage);
+        //System.out.println("MessageReceived:" +remoteMessage);
          // TODO(developer): Handle FCM messages here.
         // Not getting messages here? See why this may be: https://goo.gl/39bRNJ
         Log.d(TAG, "From: " + remoteMessage.getFrom());
-        System.out.println("RemoteMessage | 1");
-        System.out.println("RemoteMessage | Data Size: " +remoteMessage.getData().size());
+        //System.out.println("RemoteMessage | 1");
+        //System.out.println("RemoteMessage | Data Size: " +remoteMessage.getData().size());
 
         // Check if message contains a data payload.
         if (remoteMessage.getData().size() > 0) {
             Log.d(TAG, "Message data payload: " + remoteMessage.getData());
-            System.out.println("RemoteMessage | remoteMessage.getData(): "+remoteMessage.getData());
+            //System.out.println("RemoteMessage | remoteMessage.getData(): "+remoteMessage.getData());
             String name = remoteMessage.getData().get("userInfo").toString();
             String room = remoteMessage.getData().get("roomId").toString();
-            System.out.println("MyFirebaseMessagingService | remoteMessage.getData() | Name: "+name);
-            System.out.println("MyFirebaseMessagingService | remoteMessage.getData() | Room: "+room);
+            //System.out.println("MyFirebaseMessagingService | remoteMessage.getData() | Name: "+name);
+            //System.out.println("MyFirebaseMessagingService | remoteMessage.getData() | Room: "+room);
             String type = remoteMessage.getData().get(APPConstant.type);
             if(remoteMessage.getData().get("type").toString().equalsIgnoreCase("decline")){
-                System.out.println("MyFirebaseMessagingService | decline | :"+ remoteMessage.getData().get("type").toString());
+                //System.out.println("MyFirebaseMessagingService | decline | :"+ remoteMessage.getData().get("type").toString());
                 UiController uiController=UiController.getInstance();
                 uiController.notifyObservers(remoteMessage.getData().get("type").toString());
             }else {
 
-                System.out.println("RemoteMessage | remoteMessage.getData(): " + remoteMessage.getData());
+                //System.out.println("RemoteMessage | remoteMessage.getData(): " + remoteMessage.getData());
 
                 Intent intent = new Intent(this, VideoActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -90,7 +90,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     @Override
     public void onNewToken(String token) {
         Log.d(TAG, "Refreshed token: " + token);
-        System.out.println("onNewToken | Refreshed token:" + token);
+        //System.out.println("onNewToken | Refreshed token:" + token);
 
         // If you want to send messages to this application instance or
         // manage this apps subscriptions on the server side, send the
@@ -123,7 +123,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         // TODO: Implement this method to send token to your app server.
 
         SharedPreferenceManager.setFcmTokenSharedPreference(this,token);
-        System.out.println("FireBase | sendRegistrationToServer | token:" + token);
+        //System.out.println("FireBase | sendRegistrationToServer | token:" + token);
 
         if(UserHandler.getInstance().getUserData() != null)
         {
@@ -142,7 +142,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
     @Override
     public void onDestroy() {
-        System.out.println("Service has been Destroyed");
+        //System.out.println("Service has been Destroyed");
         //super.onDestroy();
     }
 }

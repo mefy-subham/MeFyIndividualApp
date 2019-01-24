@@ -30,7 +30,7 @@ public class ReportActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        System.out.println("report-------------------->>>>>>>>>>>>>>>>>>>");
+        //System.out.println("report-------------------->>>>>>>>>>>>>>>>>>>");
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -43,7 +43,7 @@ public class ReportActivity extends AppCompatActivity
         View headerView = navigationView.getHeaderView(0);
         TextView navUsername = (TextView) headerView.findViewById(R.id.drawerusername);
         userName = prefs.getString("username","");
-        System.out.println("username-------------->>>>>>>>>"+userName);
+        //System.out.println("username-------------->>>>>>>>>"+userName);
         navUsername.setText(userName);
     }
 

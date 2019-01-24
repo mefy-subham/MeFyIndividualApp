@@ -45,7 +45,7 @@ private int mCurrentPage;
 
     }
 });
-        System.out.println("main activity------------->>>>>");
+        //System.out.println("main activity------------->>>>>");
 
         SharedPreferences prefs = getSharedPreferences(MyPREFERENCES, MODE_PRIVATE);
 
@@ -53,9 +53,9 @@ private int mCurrentPage;
         userid = prefs.getString("userId","");
         myUserId = prefs.getString("myUserId","");
         role = "individual";
-        System.out.println("id------------------------->>"+individualId);
-        System.out.println("userId-------------->>>>>>>>"+userid);
-        System.out.println("myUserId---------->>>>>>>>>>>>>>"+myUserId);
+        //System.out.println("id------------------------->>"+individualId);
+        //System.out.println("userId-------------->>>>>>>>"+userid);
+        //System.out.println("myUserId---------->>>>>>>>>>>>>>"+myUserId);
     }
         public void userIdvalidate(){
 //        String getUserid = null;

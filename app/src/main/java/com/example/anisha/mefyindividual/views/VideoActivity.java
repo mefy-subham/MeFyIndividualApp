@@ -137,7 +137,7 @@ public class VideoActivity extends AppCompatActivity implements iObserver {
 
                 public void run() {
                     if(remoteParticipantIdentity.equalsIgnoreCase("temp")){
-                        System.out.println("VideoActivity | postDelayed | remoteParticipantIdentity:" + remoteParticipantIdentity);
+                        //System.out.println("VideoActivity | postDelayed | remoteParticipantIdentity:" + remoteParticipantIdentity);
                         //Toast.makeText(context, "Hi", Toast.LENGTH_SHORT).show();
                         finish();
 
@@ -148,7 +148,7 @@ public class VideoActivity extends AppCompatActivity implements iObserver {
             @Override
             public void run() {
                 //Do something here
-                System.out.println("VideoActivity | postDelayed | remoteParticipantIdentity:" + remoteParticipantIdentity);
+                //System.out.println("VideoActivity | postDelayed | remoteParticipantIdentity:" + remoteParticipantIdentity);
                 if(remoteParticipantIdentity.equalsIgnoreCase("temp"))
                     //Toast.makeText(context, "Hi", Toast.LENGTH_SHORT).show();
                     finish();
@@ -213,18 +213,18 @@ public class VideoActivity extends AppCompatActivity implements iObserver {
         status=i.getExtras().getString(APPConstant.status);
         accessToken=i.getExtras().getString(APPConstant.ACCESS_TOKEN);
 
-       /* System.out.println("VideoActivity | onCreate | getString | caller_fcmToken:" + caller_fcmToken);
-        System.out.println("VideoActivity | onCreate | getString | callee_fcm:" + callee_fcm);
-        System.out.println("VideoActivity | onCreate | getString | caller_image_url:" + caller_image_url);
-        System.out.println("VideoActivity | onCreate | getString | recording_url:" + recording_url);
-        System.out.println("VideoActivity | onCreate | getString | u_name:" + u_name);
-        System.out.println("VideoActivity | onCreate | getString | room_name:" + room_name);
-        System.out.println("VideoActivity | onCreate | getString | type:" + type);
-        System.out.println("VideoActivity | onCreate | getString | status:" + status);
-        System.out.println("VideoActivity | onCreate | getString | accessToken:" + accessToken);
+       /* //System.out.println("VideoActivity | onCreate | getString | caller_fcmToken:" + caller_fcmToken);
+        //System.out.println("VideoActivity | onCreate | getString | callee_fcm:" + callee_fcm);
+        //System.out.println("VideoActivity | onCreate | getString | caller_image_url:" + caller_image_url);
+        //System.out.println("VideoActivity | onCreate | getString | recording_url:" + recording_url);
+        //System.out.println("VideoActivity | onCreate | getString | u_name:" + u_name);
+        //System.out.println("VideoActivity | onCreate | getString | room_name:" + room_name);
+        //System.out.println("VideoActivity | onCreate | getString | type:" + type);
+        //System.out.println("VideoActivity | onCreate | getString | status:" + status);
+        //System.out.println("VideoActivity | onCreate | getString | accessToken:" + accessToken);
 */
         if (type.equalsIgnoreCase("call")) {
-            System.out.println("VideoActivity | connectToRoom | case:success | room:" + room_name);
+            //System.out.println("VideoActivity | connectToRoom | case:success | room:" + room_name);
             connectToRoom(room_name);
         }
         if(type.equalsIgnoreCase("decline"))
@@ -354,7 +354,7 @@ public class VideoActivity extends AppCompatActivity implements iObserver {
                     .audioTracks(Collections.singletonList(localAudioTrack));
 
         }
-        System.out.println("VideoActivity| connectToRoom | localAudioTrack:" + localAudioTrack);
+        //System.out.println("VideoActivity| connectToRoom | localAudioTrack:" + localAudioTrack);
 
         /*
          * Add local video track to connect options to share with participants.
@@ -363,7 +363,7 @@ public class VideoActivity extends AppCompatActivity implements iObserver {
             connectOptionsBuilder.videoTracks(Collections.singletonList(localVideoTrack));
 
         }
-        System.out.println("VideoActivity| connectToRoom | localVideoTrack:" + localVideoTrack);
+        //System.out.println("VideoActivity| connectToRoom | localVideoTrack:" + localVideoTrack);
 
         /*
          * Set the preferred audio and video codec for media.
@@ -375,11 +375,11 @@ public class VideoActivity extends AppCompatActivity implements iObserver {
          * Set the sender side encoding parameters.
          */
         connectOptionsBuilder.encodingParameters(encodingParameters);
-        System.out.println("VideoActivity | connect connectOptionsBuilder:" + connectOptionsBuilder);
-//        System.out.println("VideoActivity | connect connectOptionsBuilder.build():" + connectOptionsBuilder.build());
+        //System.out.println("VideoActivity | connect connectOptionsBuilder:" + connectOptionsBuilder);
+//        //System.out.println("VideoActivity | connect connectOptionsBuilder.build():" + connectOptionsBuilder.build());
 
-        System.out.println("VideoActivity | connect roomListener:" + roomListener());
-        System.out.println("VideoActivity | this" + VideoActivity.this);
+        //System.out.println("VideoActivity | connect roomListener:" + roomListener());
+        //System.out.println("VideoActivity | this" + VideoActivity.this);
         room = Video.connect(this, connectOptionsBuilder.build(), roomListener());
         //setDisconnectAction();
     }
@@ -439,7 +439,7 @@ public class VideoActivity extends AppCompatActivity implements iObserver {
                 //videoStatusTextView.setText("Failed to connect");
                 configureAudio(false);
                 intializeUI();
-                System.out.println("VideoActivity| connectToRoom | onConnectFailure:" + e);
+                //System.out.println("VideoActivity| connectToRoom | onConnectFailure:" + e);
 
             }
 
@@ -727,7 +727,7 @@ public class VideoActivity extends AppCompatActivity implements iObserver {
     private void configureAudio(boolean enable) {
         if (enable) {
             previousAudioMode = audioManager.getMode();
-            System.out.println("VideoActivity | configureAudio |audioManager.getMode():" + audioManager.getMode());
+            //System.out.println("VideoActivity | configureAudio |audioManager.getMode():" + audioManager.getMode());
             // Request audio focus before making any device switch
             requestAudioFocus();
             /*
@@ -823,7 +823,7 @@ public class VideoActivity extends AppCompatActivity implements iObserver {
     private void createAudioAndVideoTracks() {
         // Share your microphone
         localAudioTrack = LocalAudioTrack.create(this, true, LOCAL_AUDIO_TRACK_NAME);
-        System.out.println("VideoActivity | createAudioAndVideoTracks |LocalAudioTrack :" + localAudioTrack);
+        //System.out.println("VideoActivity | createAudioAndVideoTracks |LocalAudioTrack :" + localAudioTrack);
 
         // Share your camera
         cameraCapturerCompat = new CameraCapturerCompat(this, getAvailableCameraSource());
@@ -831,7 +831,7 @@ public class VideoActivity extends AppCompatActivity implements iObserver {
         primaryVideoView.setMirror(true);
         localVideoTrack.addRenderer(primaryVideoView);
         localVideoView = primaryVideoView;
-        System.out.println("VideoActivity | createAudioAndVideoTracks |localVideoTrack :" + localVideoTrack);
+        //System.out.println("VideoActivity | createAudioAndVideoTracks |localVideoTrack :" + localVideoTrack);
     }
     private boolean checkPermissionForCameraAndMicrophone(){
         int resultCamera = ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA);
@@ -861,7 +861,7 @@ public class VideoActivity extends AppCompatActivity implements iObserver {
     }
     @Override
     protected  void onResume() {
-        System.out.println("VideoActivity | onResume | Resume Started");
+        //System.out.println("VideoActivity | onResume | Resume Started");
         super.onResume();
 
         /*
@@ -1008,8 +1008,8 @@ public class VideoActivity extends AppCompatActivity implements iObserver {
 
     private void callPictureInPicture(){
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            System.out.println("VideoActivity | OnClick | PIP Check:" + PackageManager.FEATURE_PICTURE_IN_PICTURE);
-            System.out.println("VideoActivity | OnClick | PIP Check:" + packageManager.hasSystemFeature(PackageManager.FEATURE_PICTURE_IN_PICTURE));
+            //System.out.println("VideoActivity | OnClick | PIP Check:" + PackageManager.FEATURE_PICTURE_IN_PICTURE);
+            //System.out.println("VideoActivity | OnClick | PIP Check:" + packageManager.hasSystemFeature(PackageManager.FEATURE_PICTURE_IN_PICTURE));
             if (packageManager.hasSystemFeature(PackageManager.FEATURE_PICTURE_IN_PICTURE)) {
 
 
@@ -1019,8 +1019,8 @@ public class VideoActivity extends AppCompatActivity implements iObserver {
                     //Trigger PiP mode
                             /*try {
 
-                                System.out.println("VACT | mFramePlayer.getWidth() : " +mFramePlayer.getWidth());
-                                System.out.println("VACT | mFramePlayer.getHeight() : " +mFramePlayer.getHeight());
+                                //System.out.println("VACT | mFramePlayer.getWidth() : " +mFramePlayer.getWidth());
+                                //System.out.println("VACT | mFramePlayer.getHeight() : " +mFramePlayer.getHeight());
                                 Rational rational = new Rational(mFramePlayer.getWidth(),
                                         mFramePlayer.getHeight());
 
@@ -1029,15 +1029,15 @@ public class VideoActivity extends AppCompatActivity implements iObserver {
 
                                 enterPictureInPictureMode(mParams);
                             } catch (IllegalStateException e) {
-                                System.out.println("VACT | enterPictureInPictureMode : " +e);
+                                //System.out.println("VACT | enterPictureInPictureMode : " +e);
                                 e.printStackTrace();
                             }*/
                     enterPictureInPictureMode();
                 }
 
-                System.out.println("VideoActivity | OnClick | PIP Call");
+                //System.out.println("VideoActivity | OnClick | PIP Call");
             } else {
-                System.out.println("VideoActivity | OnClick | PIP not Called");
+                //System.out.println("VideoActivity | OnClick | PIP not Called");
                         /*Intent intent = new Intent(VideoActivity.this, MainActivity.class);
                         startActivity(intent);*/
 
