@@ -9,6 +9,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
 import android.media.AudioAttributes;
 import android.media.AudioFocusRequest;
 import android.media.AudioManager;
@@ -80,7 +81,7 @@ import java.security.IdentityScope;
 import java.util.Collections;
 
 public class VideoActivity extends AppCompatActivity implements iObserver {
-
+    private PackageManager packageManager;
     private AudioCodec audioCodec;
     private VideoCodec videoCodec;
 
@@ -128,7 +129,7 @@ public class VideoActivity extends AppCompatActivity implements iObserver {
         primaryVideoView = findViewById(R.id.primary_video_view);
         thumbnailVideoView = findViewById(R.id.thumbnail_video_view);
         context=this;
-        mFramePlayer = findViewById(R.id.fragment);
+
 
         /*Handler handler = new Handler();
 
@@ -257,8 +258,8 @@ public class VideoActivity extends AppCompatActivity implements iObserver {
 
     private void intializeUI() {
 
-        PackageManager packageManager = getApplicationContext().getPackageManager();
-
+        packageManager = getApplicationContext().getPackageManager();
+        mFramePlayer = findViewById(R.id.fragment);
         actionClose = findViewById(R.id.action_close);
         switchCameraActionFab = findViewById(R.id.switch_camera_action_fab);
         localVideoActionFab = findViewById(R.id.local_video_action_fab);
@@ -314,56 +315,7 @@ public class VideoActivity extends AppCompatActivity implements iObserver {
         moreActionFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                    System.out.println("VideoActivity | OnClick | PIP Check:" + PackageManager.FEATURE_PICTURE_IN_PICTURE);
-                    System.out.println("VideoActivity | OnClick | PIP Check:" + packageManager.hasSystemFeature(PackageManager.FEATURE_PICTURE_IN_PICTURE));
-                    if (packageManager.hasSystemFeature(PackageManager.FEATURE_PICTURE_IN_PICTURE)) {
-
-
-                        //enterPictureInPictureMode();
-
-                        if (android.os.Build.VERSION.SDK_INT >= 26) {
-                            //Trigger PiP mode
-                            try {
-                                Rational rational = new Rational(mFramePlayer.getWidth(), mFramePlayer.getHeight());
-
-                                PictureInPictureParams mParams =
-                                        new PictureInPictureParams.Builder().setAspectRatio(rational).build();
-
-                                enterPictureInPictureMode(mParams);
-                            } catch (IllegalStateException e) {
-                                e.printStackTrace();
-                            }
-                            //enterPictureInPictureMode();
-                        }
-
-                        System.out.println("VideoActivity | OnClick | PIP Call");
-                    } else {
-                        System.out.println("VideoActivity | OnClick | PIP not Called");
-                        /*Intent intent = new Intent(VideoActivity.this, MainActivity.class);
-                        startActivity(intent);*/
-
-                    }
-                } else {
-                    Toast.makeText(VideoActivity.this, "Video Paused", Toast.LENGTH_SHORT).show();
-                    /*Intent intent = new Intent(VideoActivity.this, MainActivity.class);
-                    startActivity(intent);*/
-                    AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                    builder.setMessage(R.string.pipnotsupport);
-                    builder.setCancelable(true);
-
-                    builder.setPositiveButton(
-                            "Ok",
-                            new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-                                    dialog.cancel();
-                                }
-                            });
-
-                    AlertDialog alert = builder.create();
-                    alert.show();
-                }
-
+                callPictureInPicture();
 
             }
         });
@@ -1015,4 +967,101 @@ public class VideoActivity extends AppCompatActivity implements iObserver {
             }
         }
     }
+    @Override
+    public void onPictureInPictureModeChanged (boolean isInPictureInPictureMode, Configuration newConfig) {
+        if (isInPictureInPictureMode) {
+            // Hide the full-screen UI (controls, etc.) while in picture-in-picture mode.
+            actionClose.hide();
+            switchCameraActionFab.hide();
+            localVideoActionFab.hide();
+            muteActionFab.hide();
+            moreActionFab.hide();
+            thumbnailVideoView.setVisibility(View.GONE);
+        } else {
+            // Restore the full-screen UI.
+            actionClose.show();
+            switchCameraActionFab.show();
+            localVideoActionFab.show();
+            muteActionFab.show();
+            moreActionFab.show();
+            thumbnailVideoView.setVisibility(View.VISIBLE);
+
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        // If called while in PIP mode, do not pause playback
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            if (isInPictureInPictureMode()) {
+                // Continue playback
+                callPictureInPicture();
+
+            } else {
+                // Use existing playback logic for paused Activity behavior.
+
+            }
+        }
+
+        super.onPause();
+    }
+
+    private void callPictureInPicture(){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            System.out.println("VideoActivity | OnClick | PIP Check:" + PackageManager.FEATURE_PICTURE_IN_PICTURE);
+            System.out.println("VideoActivity | OnClick | PIP Check:" + packageManager.hasSystemFeature(PackageManager.FEATURE_PICTURE_IN_PICTURE));
+            if (packageManager.hasSystemFeature(PackageManager.FEATURE_PICTURE_IN_PICTURE)) {
+
+
+                //enterPictureInPictureMode();
+
+                if (android.os.Build.VERSION.SDK_INT >= 26) {
+                    //Trigger PiP mode
+                            /*try {
+
+                                System.out.println("VACT | mFramePlayer.getWidth() : " +mFramePlayer.getWidth());
+                                System.out.println("VACT | mFramePlayer.getHeight() : " +mFramePlayer.getHeight());
+                                Rational rational = new Rational(mFramePlayer.getWidth(),
+                                        mFramePlayer.getHeight());
+
+                                PictureInPictureParams mParams =
+                                        new PictureInPictureParams.Builder().setAspectRatio(rational).build();
+
+                                enterPictureInPictureMode(mParams);
+                            } catch (IllegalStateException e) {
+                                System.out.println("VACT | enterPictureInPictureMode : " +e);
+                                e.printStackTrace();
+                            }*/
+                    enterPictureInPictureMode();
+                }
+
+                System.out.println("VideoActivity | OnClick | PIP Call");
+            } else {
+                System.out.println("VideoActivity | OnClick | PIP not Called");
+                        /*Intent intent = new Intent(VideoActivity.this, MainActivity.class);
+                        startActivity(intent);*/
+
+            }
+        } else {
+            Toast.makeText(VideoActivity.this, "Video Paused", Toast.LENGTH_SHORT).show();
+                    /*Intent intent = new Intent(VideoActivity.this, MainActivity.class);
+                    startActivity(intent);*/
+            AlertDialog.Builder builder = new AlertDialog.Builder(context);
+            builder.setMessage(R.string.pipnotsupport);
+            builder.setCancelable(true);
+
+            builder.setPositiveButton(
+                    "Ok",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.cancel();
+                        }
+                    });
+
+            AlertDialog alert = builder.create();
+            alert.show();
+        }
+    }
+
+
 }
