@@ -116,7 +116,7 @@ public class VideoActivity extends AppCompatActivity implements iObserver {
     private Context context;
 
     private String room_name,u_name,status,caller_fcmToken,callee_fcm,caller_image_url,recording_url,type;
-    private final static int INTERVAL = 8000; //42 milliseconds
+    private final static int INTERVAL = 42000; //42 milliseconds
 
 
 
